@@ -1,0 +1,19 @@
+Falls etwas schief geht, hat der Responseheader das Feld "payme-error" gesetzt.
+In "payme-error_description" steht dann die Fehlerbeschreibung. 
+
+Registierung
+Um eine Registrierung zu machen, muss die Seite createAccount.php aufgerufen werden.
+Dabei müssen folgende Headerfelder richtig gesetzt sein:
+
+payme-action -> create_user
+payme-username -> Der gewählte Username
+payme-email -> Die Email
+payme-passwd -> Das encryptete Passwort
+Wenn alles gut geht: payme-status -> ok
+
+Login:
+login.php aufrufen mit folgenden POST-Daten
+payme-action -> login_user
+payme-username -> Der gewählte Username
+payme-passwd -> Das encryptete Passwort
+Wenn alles gut geht: payme-status -> ok
