@@ -1,35 +1,42 @@
 <?php
+require_once("config.php");
 
-$isdebug = false;
-
-if(isset($_POST["payme-debug"])){
-    if(strtolower($_POST["payme-debug"]) == "true" ){
-        $isdebug = true;
-    }    
+function setErrorHeader($code){
+    header(getHeaderName("ERROR"). ":" . getErrorCode($code) );
 }
 
-
-function error($type, $msg){
-    header('payme-error: ' . $type);
-    header('payme-error_description: ' .  trim(preg_replace('/\s+/', ' ', $msg)));
-    die("Error \n");
+function error($type){
+    setErrorHeader($type);
+    die();
 }
 
 
 function debug($msg){
-    if(isdebug){
+    if($isdebug){
         print("debug: " .  $msg . "\n");
     }
 }
-
-function checkAction($expected){
-    if(isset($_POST["payme-action"])){
-        if($_POST["payme-action"] != $expected){
-            error("action", "The actions do not match. Required: " . $expected . " sent: " . $_POST["payme-action"] );
+function checkAction($action){
+    $expected = getActionCode($action);
+    $headerName = getHeaderName("ACTION");
+    
+    if(isset($_POST[$headerName])){
+        if($_POST[$headerName] != $expected){
+            error("ACTIONS_MISMATCH");
         }
     }else{
-        error("action", "The action was not specified");
+        error("ACTIONS_MISMATCH");
     }
+}
+
+function getHeaderName($str){
+    return API::$HeaderFields[$str];
+}
+function getErrorCode($str){
+    return API::$ErrorCodes[$str];
+}
+function getActionCode($str){
+   return API::$ActionCodes[$str];
 }
 
 ?>

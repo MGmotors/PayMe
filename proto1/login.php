@@ -1,19 +1,25 @@
 <?php
-$required_action = "login_user";
+
+
+require_once("functions.php");
+setErrorHeader("UNKNOWN_ERROR");
+
 $username = "";
 $passwd = "";
-require_once("functions.php");
+require_once("config.php");
 require_once("MyDB.php");
 
 //check if the Headerfield action is set and correct
-checkAction($required_action);
+checkAction("LOGIN");
+
+
 
 //check if the Data is ok
-if(isset($_POST["payme-username"]) && isset($_POST["payme-passwd"])){
-    $username = $_POST["payme-username"];
-    $passwd = $_POST["payme-passwd"];
+if(isset($_POST[getHeaderName("USERNAME")]) && isset($_POST[getHeaderName("PASSWORD")])){
+    $username =$_POST[getHeaderName("USERNAME")];
+    $passwd = $_POST[getHeaderName("PASSWORD")];
 }else{
-    error("data", "The provided data was not sufficent");
+    error("EMPTY_FIELD");
 }
 
 $mydb = new MyDB();
@@ -22,13 +28,14 @@ $a = array();
 $a[] = $username;
 $a[] = $passwd;
 $result = $mydb->query($sql,"ss",$a);
+
 if(!$result){
-    error("Checking Error", $mydb->getError());
+    print_r($mydb->getError());
+    error("DATABASE_ERROR");
 }
 if(sizeof($mydb->getRows()) != 1){
-    error("login failed", "Username or passwort doesn't match");
+    error("NAME_PW_MISMATCH");
 }
 
-header('payme-status: ok');
-print("succsess");
+setErrorHeader("NO_ERROR");
 ?>

@@ -17,3 +17,22 @@ payme-action -> login_user
 payme-username -> Der gewählte Username
 payme-passwd -> Das encryptete Passwort
 Wenn alles gut geht: payme-status -> ok
+
+payme-action-code
+    0 -> register
+    1 -> rogin
+
+Returncodes Allgeimein
+payme-status
+    0 -> ok
+    1 -> error
+
+payme-error-code
+    0 -> Empty field
+    1 -> Username taken
+    2 -> Email taken
+    3 -> Database Error
+    4 -> To many Requests 
+    11 -> Username or pw wrong
+    
+    
