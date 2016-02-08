@@ -1,0 +1,32 @@
+{
+    "ActionCodes":
+    {
+        "LOGIN": "1",
+        "REGISTER": "0"
+    },
+    "ErrorCodes":
+    {
+        "NO_ERROR": "0",
+        "UNKNOWN_ERROR":"1",
+        "DATABASE_ERROR": "2",
+        "TO_MANY_REQUESTS": "3",
+        "EMPTY_FIELD": "4",
+        "ACTIONS_MISMATCH":"5",
+        "USERNAME_TAKEN": "6",
+        "EMAIL_TAKEN": "7",
+        "NAME_PW_MISMATCH": "8"
+    },
+    "HeaderFields":
+    {
+        "USERNAME":"payme-username",
+        "PASSWORD":"payme-passwd",
+        "EMAIL":"payme-email",
+        "ACTION":"payme-action",
+        "ERROR":"payme-error"
+    },
+    "URLs":{
+        "REGISTER":"https://payme-schabimperle.c9users.io/proto1/register.php",
+        "LOGIN":"https://payme-schabimperle.c9users.io/proto1/login.php",
+        "MYADMIN":"https://payme-schabimperle.c9users.io/phpmyadmin/"
+    }
+}
