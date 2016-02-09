@@ -1,4 +1,4 @@
-package com.example.mscha.schuldenmanager2;
+package com.example.mscha.payme;
 
 import org.junit.Test;
 

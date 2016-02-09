@@ -1,10 +1,10 @@
-package com.example.mscha.schuldenmanager2.register;
+package com.example.mscha.payme.register;
 
 import android.util.Log;
 
-import com.example.mscha.schuldenmanager2.app.API;
-import com.example.mscha.schuldenmanager2.app.APIInteractor;
-import com.example.mscha.schuldenmanager2.app.OnResponseListener;
+import com.example.mscha.payme.app.API;
+import com.example.mscha.payme.app.APIInteractor;
+import com.example.mscha.payme.app.OnResponseListener;
 
 public class RegisterPresenter implements OnResponseListener {
 

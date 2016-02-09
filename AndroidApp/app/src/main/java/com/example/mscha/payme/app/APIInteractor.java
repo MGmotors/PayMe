@@ -1,9 +1,9 @@
-package com.example.mscha.schuldenmanager2.app;
+package com.example.mscha.payme.app;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.mscha.schuldenmanager2.helper.HTTPPostRequest;
+import com.example.mscha.payme.helper.HTTPPostRequest;
 
 import java.io.BufferedReader;
 import java.io.IOException;

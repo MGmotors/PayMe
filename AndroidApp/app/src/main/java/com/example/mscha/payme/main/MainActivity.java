@@ -1,9 +1,9 @@
-package com.example.mscha.schuldenmanager2.main;
+package com.example.mscha.payme.main;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.mscha.schuldenmanager2.R;
+import com.example.mscha.payme.R;
 
 public class MainActivity extends AppCompatActivity {
 

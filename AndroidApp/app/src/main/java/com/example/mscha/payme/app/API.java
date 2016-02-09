@@ -1,4 +1,4 @@
-package com.example.mscha.schuldenmanager2.app;
+package com.example.mscha.payme.app;
 
 public class API {
     public static class ActionCodes {

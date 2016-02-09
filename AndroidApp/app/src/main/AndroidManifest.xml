@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mscha.schuldenmanager2">
+    package="com.example.mscha.payme">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -9,9 +9,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity" />
+        <activity android:name="com.example.mscha.payme.main.MainActivity" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name="com.example.mscha.payme.login.LoginActivity"
             android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".register.RegisterActivity"
+            android:name="com.example.mscha.payme.register.RegisterActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
     </application>
 

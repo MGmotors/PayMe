@@ -1,4 +1,4 @@
-package com.example.mscha.schuldenmanager2.register;
+package com.example.mscha.payme.register;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
-import com.example.mscha.schuldenmanager2.R;
-import com.example.mscha.schuldenmanager2.login.LoginActivity;
+import com.example.mscha.payme.R;
+import com.example.mscha.payme.login.LoginActivity;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
