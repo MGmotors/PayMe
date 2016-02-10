@@ -68,14 +68,8 @@ public class RegisterPresenter implements OnResponseListener {
                 registerView.showDatabaseError();
                 break;
             //TODO debug code entfernen
-            case APIInteractor.NULLPOINTER:
-                Log.d(TAG, "ERROR header = null");
-                break;
-            case APIInteractor.IOEXCEPTION:
+            case APIInteractor.IO_EXCEPTION:
                 Log.d(TAG, "IOEXEPTION");
-                break;
-            case APIInteractor.MALFORMED_URL_EXCEPTION:
-                Log.d(TAG, "Host unreachable");
                 break;
             default:
                 Log.e(TAG, "Unhandled error code in header field " + API.HeaderFields.ERROR + ": " + statusCode);
