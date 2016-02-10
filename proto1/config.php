@@ -1,6 +1,7 @@
 <?php
     define("DB_HOST", "localhost");
     define("DB_USER", "schabimperle");
+    define("DB_DSN", "mysql:host=localhost;dbname=pay_me" );
     define("DB_PASSWORD", "");
     define("DB_DATABASE", "pay_me");
     

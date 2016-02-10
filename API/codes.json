@@ -14,7 +14,8 @@
         "ACTIONS_MISMATCH":"5",
         "USERNAME_TAKEN": "6",
         "EMAIL_TAKEN": "7",
-        "NAME_PW_MISMATCH": "8"
+        "ILLEGAL_CHAR": "8",
+        "NAME_PW_MISMATCH": "9"
     },
     "HeaderFields":
     {
