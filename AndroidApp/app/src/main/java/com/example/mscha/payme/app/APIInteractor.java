@@ -24,7 +24,6 @@ public class APIInteractor {
     public final static String TAG = APIInteractor.class.getName();
     public final static String IO_EXCEPTION = "-1";
     //TODO unschöne Fehlerbehandlung ändern bzw Fehlerbehandlung allgemein nachschauen (listener?)
-    private static String pw;
 
     public void register(String username, String email, String password, OnResponseListener listener) {
         HTTPPostRequest<String, String> request = new HTTPPostRequest<>();
@@ -87,6 +86,7 @@ public class APIInteractor {
                 while ((line = buff.readLine()) != null)
                     s += line + "\n";
                 Log.d(TAG, s);
+
                 return  connection.getHeaderField(API.HeaderFields.ERROR);
             } catch (IOException e) {
                 e.printStackTrace();
