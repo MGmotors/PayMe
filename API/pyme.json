@@ -1,0 +1,6 @@
+{
+  "name" : "string",
+  "description" : "longerString",
+  "debtors" : ["username1","username2","username3"],
+  "price" : 12.20
+}
