@@ -2,7 +2,9 @@
     "ActionCodes":
     {
         "LOGIN": "1",
-        "REGISTER": "0"
+        "REGISTER": "0",
+        "CREATEPM":"2",
+        "GET_MY_PMS":"3"
     },
     "ErrorCodes":
     {
@@ -14,8 +16,9 @@
         "ACTIONS_MISMATCH":"5",
         "USERNAME_TAKEN": "6",
         "EMAIL_TAKEN": "7",
-        "ILLEGAL_CHAR": "8",
-        "NAME_PW_MISMATCH": "9"
+        "BAD_DATA": "8",
+        "NAME_PW_MISMATCH": "9",
+        "NOT_LOGGEDIN":"10"
     },
     "HeaderFields":
     {
@@ -23,11 +26,14 @@
         "PASSWORD":"payme-passwd",
         "EMAIL":"payme-email",
         "ACTION":"payme-action",
-        "ERROR":"payme-error"
+        "ERROR":"payme-error",
+        "CREATEPM_JSON":"payme-createpm-json"
     },
     "URLs":{
         "REGISTER":"https://payme-schabimperle.c9users.io/proto1/register.php",
         "LOGIN":"https://payme-schabimperle.c9users.io/proto1/login.php",
+        "CREATEPM":"https://payme-schabimperle.c9users.io/proto1/createPM.php",
+        "GET_MY_PMS":"https://payme-schabimperle.c9users.io/proto1/getMyPMs.php",
         "MYADMIN":"https://payme-schabimperle.c9users.io/phpmyadmin/"
     }
 }

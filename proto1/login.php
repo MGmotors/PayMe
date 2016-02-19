@@ -4,38 +4,48 @@
 require_once("functions.php");
 setErrorHeader("UNKNOWN_ERROR");
 
-$username = "";
+$email = "";
 $passwd = "";
 require_once("config.php");
-require_once("MyDB.php");
 
 //check if the Headerfield action is set and correct
 checkAction("LOGIN");
 
+$email = getFieldOrDie("EMAIL");
+$passwd = getFieldOrDie("PASSWORD");
+$passwd_hash = password_hash($passwd, PASSWORD_DEFAULT);
 
-
-//check if the Data is ok
-if(isset($_POST[getHeaderName("USERNAME")]) && isset($_POST[getHeaderName("PASSWORD")])){
-    $username =$_POST[getHeaderName("USERNAME")];
-    $passwd = $_POST[getHeaderName("PASSWORD")];
-}else{
-    error("EMPTY_FIELD");
-}
-
-$mydb = new MyDB();
-$sql = "SELECT * FROM users2 WHERE name = ? and encrypted_password = ?";
-$a = array();
-$a[] = $username;
-$a[] = $passwd;
-$result = $mydb->query($sql,"ss",$a);
-
-if(!$result){
-    print_r($mydb->getError());
+try{    
+    $con = new PDO( DB_DSN, DB_USER, DB_PASSWORD );
+    $con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
+    $sql = "SELECT * FROM users WHERE email = :email";
+    $stmt = $con->prepare($sql);
+    $stmt->bindValue( "email", $email);
+    $succ = $stmt->execute();
+    if(!$succ){
+        $arr = $stmt->errorInfo();
+        file_put_contents( 'logs/dbErrors.txt', $arr[2] . "\n", FILE_APPEND );
+        error("DATABASE_ERROR");
+    }
+    $valid = $stmt->fetchAll();
+}catch(PDOException $e) {
+    file_put_contents( 'logs/dbErrors.txt', $e->getMessage() . "\n", FILE_APPEND );
     error("DATABASE_ERROR");
 }
-if(sizeof($mydb->getRows()) != 1){
+if(sizeof($valid) < 1){
     error("NAME_PW_MISMATCH");
 }
+
+
+
+if(!password_verify($passwd,$valid[0]["password"])){
+    error("NAME_PW_MISMATCH");
+}
+
+$con = null;
+
+session_start();
+$_SESSION["uid"] = $valid[0]["id"];
 
 setErrorHeader("NO_ERROR");
 ?>

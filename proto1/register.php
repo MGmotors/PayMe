@@ -16,7 +16,7 @@ $email = "";
 //check if the Headerfield action is set and correct
 checkAction("REGISTER");
 
-//check if the Data is ok
+//check if the Data is set
 if(isset($_POST[getHeaderName("USERNAME")]) && isset($_POST[getHeaderName("PASSWORD")]) && isset($_POST[getHeaderName("EMAIL")])){
     $username = $_POST[getHeaderName("USERNAME")];
     $passwd = $_POST[getHeaderName("PASSWORD")];
@@ -25,7 +25,15 @@ if(isset($_POST[getHeaderName("USERNAME")]) && isset($_POST[getHeaderName("PASSW
     error("EMPTY_FIELD");
 }
 
-//need more checks if Username is ok, email valid
+//more checks
+if(strlen($username) < 4 ){
+    print($username);
+    error("BAD_DATA");
+}
+if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+     print("2");
+    error("BAD_DATA");
+}
 
 //check if Email ist already in use
 try{    
@@ -73,6 +81,8 @@ if(sizeof($valid) != 0){
 }
 $con = null;
 
+
+//INSERT 
 $passwd_hash = password_hash($passwd,PASSWORD_DEFAULT);
 $activation_hash = activationHash($email);
 try{    
@@ -97,6 +107,9 @@ try{
     error("DATABASE_ERROR");
 }
 $con = null;
+
+session_start();
+$_SESSION["uid"] = $valid["id"];
 
 setErrorHeader("NO_ERROR");
 ?>
