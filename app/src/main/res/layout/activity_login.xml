@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:padding="@dimen/pm_padding" />
 
     <EditText
         android:id="@+id/password"
@@ -25,13 +26,15 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:padding="@dimen/pm_padding" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:enabled="false"
+        android:layout_margin="@dimen/pm_padding"
         android:text="@string/btn_login" />
 
     <Button
@@ -40,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:background="@null"
-        android:text="@string/btn_Link_to_Register" />
+        android:text="@string/btn_Link_to_Register"
+        android:layout_margin="@dimen/pm_padding" />
 
 </LinearLayout>

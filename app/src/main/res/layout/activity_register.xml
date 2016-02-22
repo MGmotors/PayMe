@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_name"
         android:inputType="textPersonName"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:padding="@dimen/pm_padding" />
 
     <EditText
         android:id="@+id/email"
@@ -25,7 +26,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:padding="@dimen/pm_padding" />
 
     <EditText
         android:id="@+id/password1"
@@ -33,7 +35,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:padding="@dimen/pm_padding" />
 
     <EditText
         android:id="@+id/password2"
@@ -41,21 +44,23 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_password_repeat"
         android:inputType="textPassword"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:padding="@dimen/pm_padding" />
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:enabled="false"
-        android:text="@string/btn_register" />
+        android:text="@string/btn_register"
+        android:padding="@dimen/pm_padding" />
 
     <Button
         android:id="@+id/btnLinkToLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:background="@null"
-        android:text="@string/btn_Link_to_Login" />
+        android:text="@string/btn_Link_to_Login"
+        android:layout_margin="@dimen/pm_padding" />
 
 </LinearLayout>
