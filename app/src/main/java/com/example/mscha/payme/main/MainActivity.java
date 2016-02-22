@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.mscha.payme.R;
 import com.example.mscha.payme.app.API;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements OnResponseListene
 
     private static final String TAG = "MainActivity";
     private MainPresenter presenter;
+    private TextView txtOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements OnResponseListene
                 navigateToPm();
             }
         });
+
+        txtOut = (TextView) findViewById(R.id.txtOut);
+        presenter.getMyPMs();
     }
 
     public void navigateToPm() {
@@ -43,5 +49,9 @@ public class MainActivity extends AppCompatActivity implements OnResponseListene
     @Override
     public void onResponse(String statusCode, String action, String data) {
         Log.d(TAG, "StatusCode: " + statusCode);
+    }
+
+    public void setData(String data) {
+        txtOut.setText(data);
     }
 }

@@ -17,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -69,7 +70,9 @@ public class APIInteractor {
     }
 
     public void getMyPMs(OnResponseListener responseListener){
-
+        HttpPost request = new HttpPost();
+        request.put(API.HeaderFields.ACTION,API.ActionCodes.GET_MY_PMS);
+        sendAsyncRequest(API.URLs.GET_MY_PMS, request, responseListener);
     }
 
     private void sendAsyncRequest(String url, HttpPost request, OnResponseListener onResponseListener) {
@@ -105,6 +108,7 @@ public class APIInteractor {
         //TODO debug code entfernen
         protected String[] doInBackground(Void... params) {
             //TODO hier weiter machen (cookies und eingaben managen)
+            String answer;
             try {
                 HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
                 con.setDoOutput(true);
@@ -112,23 +116,23 @@ public class APIInteractor {
                 if(sessionCookie != null)
                     con.setRequestProperty("Cookie", sessionCookie);
                 con.getOutputStream().write(postRequest.toString().getBytes());
-                Log.d(TAG, "Answer: " + getPayload(con));
+
+                //read answer
+                BufferedReader buff = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String line;
+                StringBuilder s = new StringBuilder();
+                while ((line = buff.readLine()) != null)
+                    s.append(line).append("\n");
+                answer = s.toString();
+                Log.d(TAG, "Answer: " + answer );
+
+
                 getSessionCookie(con.getHeaderFields().get("Set-Cookie"));
-                return  new String[]{con.getHeaderField(API.HeaderFields.ERROR),con.getHeaderField(API.HeaderFields.ACTION),getPayload(con)};
+                return  new String[]{con.getHeaderField(API.HeaderFields.ERROR),con.getHeaderField(API.HeaderFields.ACTION),answer};
             } catch (IOException e) {
                 e.printStackTrace();
                 return new String[]{IO_EXCEPTION};
             }
-        }
-
-
-        private String getPayload(HttpURLConnection connection) throws IOException{
-            BufferedReader buff = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line;
-            StringBuilder s = new StringBuilder();
-            while ((line = buff.readLine()) != null)
-                s.append(line).append("\n");
-            return s.toString();
         }
 
         private void getSessionCookie(List<String> cookies) {
