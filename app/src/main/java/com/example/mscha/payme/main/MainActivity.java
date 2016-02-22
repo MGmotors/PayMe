@@ -1,5 +1,6 @@
 package com.example.mscha.payme.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import com.example.mscha.payme.R;
 import com.example.mscha.payme.app.API;
 import com.example.mscha.payme.app.APIInteractor;
 import com.example.mscha.payme.app.OnResponseListener;
+import com.example.mscha.payme.pm.PmActivity;
 
 public class MainActivity extends AppCompatActivity implements OnResponseListener{
 
@@ -29,9 +31,13 @@ public class MainActivity extends AppCompatActivity implements OnResponseListene
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.onAddPressed();
+                navigateToPm();
             }
         });
+    }
+
+    public void navigateToPm() {
+        startActivity(new Intent(getApplicationContext(), PmActivity.class));
     }
 
     @Override
