@@ -35,7 +35,7 @@ public class LoginPresenter implements OnResponseListener {
     }
 
     @Override
-    public void onResponse(String statusCode) {
+    public void onResponse(String statusCode, String Action, String data) {
         view.hideProgress();
         switch (statusCode) {
             case API.ErrorCodes.NO_ERROR:

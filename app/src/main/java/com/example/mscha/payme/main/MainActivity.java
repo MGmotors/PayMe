@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnResponseListene
     }
 
     @Override
-    public void onResponse(String statusCode) {
+    public void onResponse(String statusCode, String action, String data) {
         Log.d(TAG, "StatusCode: " + statusCode);
     }
 }

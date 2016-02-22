@@ -13,12 +13,12 @@ public class MainPresenter implements OnResponseListener{
         this.apiInteractor = new APIInteractor();
     }
 
-    public void onAddPressed() {
+    public void onAddPressed(){
         this.apiInteractor.createPm("Einkauf", "", new String[]{"user"}, 15.2, this);
     }
 
     @Override
-    public void onResponse(String statusCode) {
+    public void onResponse(String statusCode, String action, String data) {
 
     }
 }

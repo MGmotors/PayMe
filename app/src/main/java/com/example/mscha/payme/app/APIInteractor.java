@@ -68,6 +68,10 @@ public class APIInteractor {
         sendAsyncRequest(API.URLs.CREATEPM, request, onResponseListener);
     }
 
+    public void getMyPMs(OnResponseListener responseListener){
+
+    }
+
     private void sendAsyncRequest(String url, HttpPost request, OnResponseListener onResponseListener) {
         new SendAsyncRequest(url, request, onResponseListener).execute();
     }
@@ -86,7 +90,7 @@ public class APIInteractor {
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
-    private class SendAsyncRequest extends AsyncTask<Void, Void, String> {
+    private class SendAsyncRequest extends AsyncTask<Void, Void, String[]> {
         private final String url;
         private final HttpPost postRequest;
         private final OnResponseListener onResponse;
@@ -98,7 +102,8 @@ public class APIInteractor {
         }
 
         @Override
-        protected String doInBackground(Void... params) {
+        //TODO debug code entfernen
+        protected String[] doInBackground(Void... params) {
             //TODO hier weiter machen (cookies und eingaben managen)
             try {
                 HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
@@ -107,23 +112,23 @@ public class APIInteractor {
                 if(sessionCookie != null)
                     con.setRequestProperty("Cookie", sessionCookie);
                 con.getOutputStream().write(postRequest.toString().getBytes());
-                printAnswer(con);
+                Log.d(TAG, "Answer: " + getPayload(con));
                 getSessionCookie(con.getHeaderFields().get("Set-Cookie"));
-                return  con.getHeaderField(API.HeaderFields.ERROR);
+                return  new String[]{con.getHeaderField(API.HeaderFields.ERROR),con.getHeaderField(API.HeaderFields.ACTION),getPayload(con)};
             } catch (IOException e) {
                 e.printStackTrace();
-                return IO_EXCEPTION;
+                return new String[]{IO_EXCEPTION};
             }
         }
 
-        //TODO debug code entfernen
-        private void printAnswer(HttpURLConnection connection) throws IOException{
+
+        private String getPayload(HttpURLConnection connection) throws IOException{
             BufferedReader buff = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line;
             StringBuilder s = new StringBuilder();
             while ((line = buff.readLine()) != null)
                 s.append(line).append("\n");
-            Log.d(TAG, "Answer: " + s.toString());
+            return s.toString();
         }
 
         private void getSessionCookie(List<String> cookies) {
@@ -134,8 +139,8 @@ public class APIInteractor {
         }
 
         @Override
-        protected void onPostExecute(String string) {
-            onResponse.onResponse(string);
+        protected void onPostExecute(String[] string) {
+            onResponse.onResponse(string[0],string[1],string[2]);
         }
     }
 
