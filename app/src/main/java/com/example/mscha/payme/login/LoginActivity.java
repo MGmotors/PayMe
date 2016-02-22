@@ -7,6 +7,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,7 @@ import com.example.mscha.payme.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static String TAG = "LoginActivity";
     private LoginPresenter presenter;
     private EditText usernameEditText;
     private EditText passwordEditText;
@@ -48,9 +51,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         usernameEditText.addTextChangedListener(textWatcher);
         passwordEditText.addTextChangedListener(textWatcher);
+        passwordEditText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)){
+                    presenter.onLoginClicked(usernameEditText.getText().toString() ,passwordEditText.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+        });
 
         loginBtn = (Button) findViewById(R.id.btnLogin);
         loginBtn.setOnClickListener(this);
+
+
         findViewById(R.id.btnLinkToRegister).setOnClickListener(this);
 
         if(getIntent().hasExtra("Message"))
