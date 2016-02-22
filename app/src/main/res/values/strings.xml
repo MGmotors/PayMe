@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">PayMe</string>
+    <string name="hint_email">E-Mail</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="hint_name">Username</string>
+    <string name="btn_register">Register</string>
+    <string name="btn_Link_to_Login">Already registered</string>
+    <string name="btn_Link_to_Register">Don\'t have an account</string>
+    <string name="hint_user">Username</string>
+    <string name="password_empty_error">Password can not be empty</string>
+    <string name="username_empty_error">Username can not be empty</string>
+    <string name="login_error">Login failed. Check username and password</string>
+    <string name="login_successful">Login Successful</string>
+    <string name="logging_in">Logging in</string>
+    <string name="email_empty_error">E-Mail can not be empty</string>
+    <string name="username_taken_error">Register failed. Username already in use.</string>
+    <string name="registering">Registering</string>
+    <string name="email_in_use_error">E-Mail already in use</string>
+    <string name="password_match_error">Passwords are not the same</string>
+    <string name="database_error">Database Error. Please try again later.</string>
+    <string name="hint_password_repeat">Repeat password</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="registration_link_message">Check your mails. You got a registration link</string>
+</resources>
