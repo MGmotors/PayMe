@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.logging_in));
 
-        usernameEditText = (EditText) findViewById(R.id.username);
+        usernameEditText = (EditText) findViewById(R.id.email);
         passwordEditText = (EditText) findViewById(R.id.password);
 
         TextWatcher textWatcher = new TextWatcher() {

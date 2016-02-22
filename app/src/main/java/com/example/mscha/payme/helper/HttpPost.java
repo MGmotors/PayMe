@@ -9,6 +9,6 @@ public class HttpPost extends HashMap<String, String>{
         for (Entry<String, String> entry : this.entrySet()){
             sb.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
         }
-        return sb.deleteCharAt(sb.length()).toString();
+        return sb.deleteCharAt(sb.length() - 1).toString();
     }
 }

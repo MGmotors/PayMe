@@ -12,11 +12,11 @@
     tools:context="com.example.mscha.payme.login.LoginActivity">
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_user"
-        android:inputType="textPersonName"
+        android:hint="@string/hint_email"
+        android:inputType="textEmailAddress"
         android:singleLine="true" />
 
     <EditText
