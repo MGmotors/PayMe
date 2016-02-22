@@ -22,7 +22,6 @@ public class LoginPresenter implements OnResponseListener {
         this.apiInteractor.login(email, password, this);
     }
 
-
     public void onType(String email, String password) {
         if(email.contains("@") && !password.isEmpty())
             this.view.enableLoginButton(true);
@@ -37,6 +36,10 @@ public class LoginPresenter implements OnResponseListener {
     @Override
     public void onResponse(String statusCode, String Action, String data) {
         view.hideProgress();
+        if (statusCode == null) {
+            Log.e(TAG, "Status code = null");
+            return;
+        }
         switch (statusCode) {
             case API.ErrorCodes.NO_ERROR:
                 view.navigateToMain();

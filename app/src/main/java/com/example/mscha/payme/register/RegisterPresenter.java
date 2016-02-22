@@ -37,6 +37,10 @@ public class RegisterPresenter implements OnResponseListener {
     @Override
     public void onResponse(String statusCode, String action, String data) {
         view.hideProgress();
+        if (statusCode == null) {
+            Log.e(TAG, "Status code = null");
+            return;
+        }
         switch (statusCode) {
             case API.ErrorCodes.NO_ERROR:
                 view.navigateToLogin(view.getString(R.string.registration_link_message));

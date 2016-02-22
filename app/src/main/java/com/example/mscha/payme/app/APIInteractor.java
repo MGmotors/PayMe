@@ -140,6 +140,10 @@ public class APIInteractor {
 
         @Override
         protected void onPostExecute(String[] string) {
+            if (string.length < 3) {
+                onResponse.onResponse(API.ErrorCodes.UNKNOWN_ERROR, null, null);
+                return;
+            }
             onResponse.onResponse(string[0],string[1],string[2]);
         }
     }
