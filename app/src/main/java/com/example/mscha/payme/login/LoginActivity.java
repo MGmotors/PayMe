@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -54,14 +55,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passwordEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)){
-                    presenter.onLoginClicked(usernameEditText.getText().toString() ,passwordEditText.getText().toString());
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER) && loginBtn.isEnabled()) {
+                    presenter.onLoginClicked(usernameEditText.getText().toString(), passwordEditText.getText().toString());
                     return true;
                 }
                 return false;
             }
         });
-
         loginBtn = (Button) findViewById(R.id.btnLogin);
         loginBtn.setOnClickListener(this);
 
