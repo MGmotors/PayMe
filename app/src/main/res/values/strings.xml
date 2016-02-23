@@ -22,4 +22,5 @@
     <string name="hint_password_repeat">Repeat password</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="registration_link_message">Check your mails. You got a registration link</string>
+    <string name="remember_me_checkbox_text">Remember me</string>
 </resources>

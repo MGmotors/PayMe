@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".login.LoginActivity"
-            android:windowSoftInputMode="stateVisible">
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,12 +21,12 @@
         </activity>
         <activity
             android:name=".register.RegisterActivity"
-            android:windowSoftInputMode="stateVisible" />
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".main.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".pm.PmActivity"></activity>
+        <activity android:name=".pm.PmActivity" />
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -29,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         presenter = new RegisterPresenter(this);
+        this.setSupportActionBar((Toolbar) findViewById(R.id.register_toolbar));
+
         registerBtn = (Button) findViewById(R.id.btnRegister);
 
         progressDialog = new ProgressDialog(this);
