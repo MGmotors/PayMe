@@ -26,7 +26,7 @@ window.reqMaker.Model = function()
         return json.ActionCodes[name];
     };
 
-    this.getStatusNameByCode = function(code)
+    this.getErrorNameByCode = function(code)
     {
         for (var name in json.ErrorCodes)
         {

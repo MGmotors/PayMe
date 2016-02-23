@@ -122,8 +122,8 @@ window.reqMaker.View = function(){
         headerCon.removeChild(rowCon);
     };
     
-    this.wasError = function(code){
-        indicator.innerHTML = code;
+    this.wasError = function(code,name){
+        indicator.innerHTML = name;
         if(code != "0"){
             indicator.style.backgroundColor = "#FFE6E6";
         }else{

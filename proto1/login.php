@@ -1,12 +1,9 @@
 <?php
-
-
-require_once("functions.php");
+require_once("helper/functions.php");
 setErrorHeader("UNKNOWN_ERROR");
 
 $email = "";
 $passwd = "";
-require_once("config.php");
 
 //check if the Headerfield action is set and correct
 checkAction("LOGIN");
@@ -24,13 +21,11 @@ try{
     $succ = $stmt->execute();
     if(!$succ){
         $arr = $stmt->errorInfo();
-        file_put_contents( 'logs/dbErrors.txt', $arr[2] . "\n", FILE_APPEND );
-        error("DATABASE_ERROR");
+        dbError($arr[2]);
     }
     $valid = $stmt->fetchAll();
 }catch(PDOException $e) {
-    file_put_contents( 'logs/dbErrors.txt', $e->getMessage() . "\n", FILE_APPEND );
-    error("DATABASE_ERROR");
+    dbError($e->getMessage());
 }
 if(sizeof($valid) < 1){
     error("NAME_PW_MISMATCH");

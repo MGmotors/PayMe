@@ -45,7 +45,8 @@ window.reqMaker.Presenter = function(){
         req.open("POST", url, false);
         req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         req.send(str1);
-        v.wasError(req.getResponseHeader("payme-error"));
+        var code = req.getResponseHeader("payme-error");
+        v.wasError(code, m.getErrorNameByCode(code));
         ret += "### Request Data ### \n";
         ret += str1 + "\n\n";
         ret += "### Response header ### \n";

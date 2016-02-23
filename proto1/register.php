@@ -1,13 +1,6 @@
 <?php
-function activationHash($input){
-    $salt = sha1(rand());
-    $salt = substr($salt, 0, 10);
-    return sha1($salt . $input . $salt);
-}
-
-require_once("functions.php");
+require_once("helper/functions.php");
 setErrorHeader("UNKNOWN_ERROR");
-require_once("config.php");
 
 $username = "";
 $passwd = "";
@@ -45,13 +38,11 @@ try{
     $succ = $stmt->execute();
     if(!$succ){
         $arr = $stmt->errorInfo();
-        file_put_contents( 'logs/dbErrors.txt', $arr[2] . "\n", FILE_APPEND );
-        error("DATABASE_ERROR");
+        dbError($arr[2]);
     }
     $valid = $stmt->fetchAll();
 }catch(PDOException $e) {
-    file_put_contents( 'logs/dbErrors.txt', $e->getMessage() . "\n", FILE_APPEND );
-    error("DATABASE_ERROR");
+     dbError($e->getMessage());
 }
 if(sizeof($valid) != 0){
     error("EMAIL_TAKEN");
@@ -67,14 +58,12 @@ try{
     $stmt->bindValue("username", $username);
     $succ = $stmt->execute();
     if(!$succ){
-        $arr = $stmt->errorInfo();
-        file_put_contents( 'logs/dbErrors.txt', $arr[2] . "\n", FILE_APPEND );
-        error("DATABASE_ERROR");
+       $arr = $stmt->errorInfo();
+        dbError($arr[2]);
     }
     $valid = $stmt->fetchAll();
 }catch(PDOException $e) {
-    file_put_contents( 'logs/dbErrors.txt', $e->getMessage() . "\n", FILE_APPEND );
-    error("DATABASE_ERROR");
+    dbError($e->getMessage());
 }
 if(sizeof($valid) != 0){
     error("USERNAME_TAKEN");
@@ -97,14 +86,12 @@ try{
     $succ = $stmt->execute();
     if(!$succ){
         $arr = $stmt->errorInfo();
-        file_put_contents( 'logs/dbErrors.txt', $arr[2] . "\n", FILE_APPEND );
-        error("DATABASE_ERROR");
+        dbError($arr[2]);
     }
     $valid = $stmt->fetchAll();
     
 }catch(PDOException $e) {
-    file_put_contents( 'logs/dbErrors.txt', $e->getMessage() . "\n", FILE_APPEND );
-    error("DATABASE_ERROR");
+    dbError($e->getMessage());
 }
 $con = null;
 
@@ -112,4 +99,15 @@ session_start();
 $_SESSION["uid"] = $valid["id"];
 
 setErrorHeader("NO_ERROR");
+
+
+#####################################################
+############ Functions ##############################
+#####################################################
+
+function activationHash($input){
+    $salt = sha1(rand());
+    $salt = substr($salt, 0, 10);
+    return sha1($salt . $input . $salt);
+}
 ?>

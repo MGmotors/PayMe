@@ -5,9 +5,11 @@
     define("DB_PASSWORD", "");
     define("DB_DATABASE", "pay_me");
     
-    $file = "../API/codes.json";
+    define("DB_ERROR_LOG","/home/ubuntu/workspace/logs/dbErrors.log");
+    
+    $file = "/home/ubuntu/workspace/API/codes.json";
     $myfile = fopen($file, "r") or die("Unable to open file!");
-    $json = json_decode(fread($myfile,filesize($file)),true);
+    $API_json = json_decode(fread($myfile,filesize($file)),true);
     fclose($myfile);
     class API{
         static $ActionCodes;
@@ -15,9 +17,9 @@
         static $HeaderFields;
         static $URLs;
     }
-    API::$ActionCodes = $json["ActionCodes"];
-    API::$ErrorCodes = $json["ErrorCodes"];
-    API::$HeaderFields = $json["HeaderFields"];
-    API::$URLs = $json["URLs"];
+    API::$ActionCodes = $API_json["ActionCodes"];
+    API::$ErrorCodes = $API_json["ErrorCodes"];
+    API::$HeaderFields = $API_json["HeaderFields"];
+    API::$URLs = $API_json["URLs"];
     
 ?>

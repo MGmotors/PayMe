@@ -23,6 +23,11 @@ function error($type){
     die();
 }
 
+function dbError($sting){
+     file_put_contents(DB_ERROR_LOG, $sting . "\n\n", FILE_APPEND );
+     error("DATABASE_ERROR");
+}
+
 function checkAction($action){
     $expected = getActionCode($action);
     $headerName = getHeaderName("ACTION");
@@ -30,6 +35,7 @@ function checkAction($action){
         if($_POST[$headerName] != $expected){
             error("ACTIONS_MISMATCH");
         }
+        header($headerName . ":". $expected);
     }else{
         error("ACTIONS_MISMATCH");
     }

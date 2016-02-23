@@ -1,5 +1,5 @@
 <?php
-    require_once("functions.php");
+    require_once("helper/functions.php");
     session_start();
     ensureLogin();
     
@@ -40,14 +40,12 @@ try{
     $succ = $stmt->execute();
     if(!$succ){
         $arr = $stmt->errorInfo();
-        file_put_contents( 'logs/dbErrors.txt', $arr[2] . "\n", FILE_APPEND );
-        error("DATABASE_ERROR");
+        dbError($arr[2]);
     }
     $valid = $stmt->fetchAll();
     $paymeid = $con->lastInsertId();
 }catch(PDOException $e) {
-    file_put_contents( 'logs/dbErrors.txt', $e->getMessage() . "\n", FILE_APPEND );
-    error("DATABASE_ERROR");
+    dbError($e->getMessage());
 }
 
 
@@ -73,13 +71,11 @@ try{
     $succ = $stmt->execute();
     if(!$succ){
         $arr = $stmt->errorInfo();
-        file_put_contents( 'logs/dbErrors.txt', $arr[2] . "\n", FILE_APPEND );
-        error("DATABASE_ERROR");
+        dbError($arr[2]);
     }
     $valid = $stmt->fetchAll();
 }catch(PDOException $e) {
-    file_put_contents( 'logs/dbErrors.txt', $e->getMessage() . "\n", FILE_APPEND );
-    error("DATABASE_ERROR");
+     dbError($e->getMessage());
 }
 if(sizeof($valid) < 1){
     error("BAD_DATA");
@@ -103,14 +99,12 @@ try{
     $succ = $stmt->execute();
     if(!$succ){
         $arr = $stmt->errorInfo();
-        file_put_contents( 'logs/dbErrors.txt', $arr[2] . "\n", FILE_APPEND );
-        error("DATABASE_ERROR");
+        dbError($arr[2]);
     }
     $valid = $stmt->fetchAll();
     $id =  $con->lastInsertId();
 }catch(PDOException $e) {
-    file_put_contents( 'logs/dbErrors.txt', $e->getMessage() . "\n", FILE_APPEND );
-    error("DATABASE_ERROR");
+    dbError($e->getMessage());
 }
 
 if(!$id){

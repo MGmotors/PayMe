@@ -2,9 +2,9 @@
 /*
 Returns a list of PM's created by a specific user specified by his email
 */
-require_once("functions.php");
-require_once("config.php");
+require_once("helper/functions.php");
 setErrorHeader("UNKNOWN_ERROR");
+
 session_start();
 ensureLogin();
 
@@ -13,9 +13,10 @@ checkAction("GET_MY_PMS");
 
 
 
+
 $id= $_SESSION["uid"];
 $myPMs = getMyPMs($id);
-$print = "{ ";
+$print = "{[ ";
 for($i = 0; $i<sizeof($myPMs);$i++){
     $row = $myPMs[$i];
     $s = 
@@ -29,7 +30,8 @@ for($i = 0; $i<sizeof($myPMs);$i++){
     }
     $print .= $s;
 }
-$print .= " }";
+$print .= " ]}";
+
 print($print);
 setErrorHeader("NO_ERROR");
 
@@ -47,13 +49,11 @@ function getMyPMs($id){
         $succ = $stmt->execute();
         if(!$succ){
             $arr = $stmt->errorInfo();
-            file_put_contents( 'logs/dbErrors.txt', $arr[2] . "\n", FILE_APPEND );
-            error("DATABASE_ERROR");
+            dbError($arr[2]);
         }
         return $stmt->fetchAll();
     } catch(PDOException $e) {
-        file_put_contents( 'logs/dbErrors.txt', $e->getMessage() . "\n", FILE_APPEND );
-        error("DATABASE_ERROR");
+       dbError($e->getMessage());
     }
 }
 
@@ -67,14 +67,12 @@ function getDebtorNamesAndStateInJSON($paymeID){
         $succ = $stmt->execute();
         if(!$succ){
             $arr = $stmt->errorInfo();
-            file_put_contents( 'logs/dbErrors.txt', $arr[2] . "\n", FILE_APPEND );
-            error("DATABASE_ERROR");
+            dbError($arr[2]);
         }
         $result = $stmt->fetchAll();
-        print_r($result);
+        //print_r($result);
     } catch(PDOException $e) {
-        file_put_contents( 'logs/dbErrors.txt', $e->getMessage() . "\n", FILE_APPEND );
-        error("DATABASE_ERROR");
+        dbError($e->getMessage());
     }
     
     $str = "[";
