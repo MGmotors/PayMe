@@ -13,11 +13,9 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -25,25 +23,22 @@ import javax.net.ssl.HttpsURLConnection;
 public class APIInteractor {
 
     public final static String TAG = "APIInteractor";
-    public final static String IO_EXCEPTION = "-1";
-
     private static String sessionCookie;
-    //TODO unschöne Fehlerbehandlung ändern bzw Fehlerbehandlung allgemein nachschauen (listener?)
 
-    public void register(String username, String email, String password, OnResponseListener listener) {
+    public void register(String username, String email, String hashedPassword, OnResponseListener listener) {
         HttpPost request = new HttpPost();
         request.put(API.HeaderFields.ACTION, API.ActionCodes.REGISTER);
         request.put(API.HeaderFields.USERNAME, username);
         request.put(API.HeaderFields.EMAIL, email);
-        request.put(API.HeaderFields.PASSWORD, byteToString(hash(password)));
+        request.put(API.HeaderFields.PASSWORD, hashedPassword);
         sendAsyncRequest(API.URLs.REGISTER, request, listener);
     }
 
-    public void login(String email, String password, OnResponseListener listener) {
+    public void login(String email, String hashedPassword, OnResponseListener listener) {
         HttpPost request = new HttpPost();
         request.put(API.HeaderFields.ACTION, API.ActionCodes.LOGIN);
         request.put(API.HeaderFields.EMAIL, email);
-        request.put(API.HeaderFields.PASSWORD, byteToString(hash(password)));
+        request.put(API.HeaderFields.PASSWORD, hashedPassword);
         sendAsyncRequest(API.URLs.LOGIN, request, listener);
     }
 
@@ -107,8 +102,6 @@ public class APIInteractor {
         @Override
         //TODO debug code entfernen
         protected String[] doInBackground(Void... params) {
-            //TODO hier weiter machen (cookies und eingaben managen)
-            String answer;
             try {
                 HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
                 con.setDoOutput(true);
@@ -120,18 +113,19 @@ public class APIInteractor {
                 //read answer
                 BufferedReader buff = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 String line;
-                StringBuilder s = new StringBuilder();
+                StringBuilder answerBuilder = new StringBuilder();
                 while ((line = buff.readLine()) != null)
-                    s.append(line).append("\n");
-                answer = s.toString();
-                Log.d(TAG, "Answer: " + answer );
+                    answerBuilder.append(line).append("\n");
+                String answer = answerBuilder.toString();
+                Log.d(TAG, "Answer: " + answer);
 
+                Log.d(TAG, "Statuscode: " + con.getHeaderField(API.HeaderFields.ERROR));
 
-                getSessionCookie(con.getHeaderFields().get("Set-Cookie"));
-                return  new String[]{con.getHeaderField(API.HeaderFields.ERROR),con.getHeaderField(API.HeaderFields.ACTION),answer};
+                this.getSessionCookie(con.getHeaderFields().get("Set-Cookie"));
+                return new String[]{con.getHeaderField(API.HeaderFields.ERROR), con.getHeaderField(API.HeaderFields.ACTION), answer};
             } catch (IOException e) {
                 e.printStackTrace();
-                return new String[]{IO_EXCEPTION};
+                return new String[]{API.ErrorCodes.UNKNOWN_ERROR};
             }
         }
 

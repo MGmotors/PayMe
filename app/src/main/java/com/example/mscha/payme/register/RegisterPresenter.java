@@ -21,7 +21,7 @@ public class RegisterPresenter implements OnResponseListener {
     public void onRegisterClicked(String username, String email, String password1, String password2) {
         if(password1.equals(password2)) {
             view.showProgress();
-            apiInteractor.register(username, email, password1, this);
+            apiInteractor.register(username, email, apiInteractor.byteToString(apiInteractor.hash(password1)), this);
         } else
             this.view.showPasswordMatchError();
     }
@@ -53,10 +53,6 @@ public class RegisterPresenter implements OnResponseListener {
                 break;
             case API.ErrorCodes.DATABASE_ERROR:
                 view.showDatabaseError();
-                break;
-            //TODO debug code entfernen
-            case APIInteractor.IO_EXCEPTION:
-                Log.d(TAG, "IOEXEPTION");
                 break;
             default:
                 Log.e(TAG, "Unhandled error code in header field " + API.HeaderFields.ERROR + ": " + statusCode);

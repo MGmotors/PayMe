@@ -7,12 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.mscha.payme.R;
-import com.example.mscha.payme.app.API;
-import com.example.mscha.payme.app.APIInteractor;
 import com.example.mscha.payme.app.OnResponseListener;
 import com.example.mscha.payme.pm.PmActivity;
 
@@ -27,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements OnResponseListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.presenter = new MainPresenter(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
