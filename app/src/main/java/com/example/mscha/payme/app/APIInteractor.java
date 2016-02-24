@@ -143,6 +143,10 @@ public class APIInteractor {
                 onResponse.onResponse(API.ErrorCodes.UNKNOWN_ERROR, null, null);
                 return;
             }
+            if(string[0] == null) {
+                onResponse.onResponse(API.ErrorCodes.SERVER_ERROR, null, null);
+                return;
+            }
             onResponse.onResponse(string[0],string[1],string[2]);
         }
     }

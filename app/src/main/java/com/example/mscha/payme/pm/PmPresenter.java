@@ -8,7 +8,7 @@ public class PmPresenter implements OnResponseListener{
     private static final String TAG = "PmPresenter";
     private PmActivity view;
     private APIInteractor apiInteractor;
-    private String[] debtorsDummyData = new String[] {};
+    private String[] debtorsDummyData = new String[] {"max"};
 
     public PmPresenter(PmActivity view) {
         this.view = view;
@@ -43,6 +43,8 @@ public class PmPresenter implements OnResponseListener{
 
     @Override
     public void onResponse(String statusCode, String action, String data) {
-        view.finish();
+        //TODO fehlerbehandlung
+        if(statusCode.equals("0"))
+            view.finish();
     }
 }

@@ -19,6 +19,7 @@ public class API {
         public final static String BAD_DATA = "8";
         public final static String NAME_PW_MISMATCH = "9";
         public final static String NOT_LOGGEDIN = "10";
+        public final static String SERVER_ERROR = "11";
     }
     public static class HeaderFields{
         public final static String USERNAME = "payme-username";
@@ -29,8 +30,8 @@ public class API {
         public final static String CREATEPM_JSON = "payme-createpm-json";
     }
     public static class URLs{
-        public final static String REGISTER = "https://payme-schabimperle.c9users.io/proto1/register.php";
         public final static String LOGIN = "https://payme-schabimperle.c9users.io/proto1/login.php";
+        public final static String REGISTER = "https://payme-schabimperle.c9users.io/proto1/register.php";
         public final static String CREATEPM = "https://payme-schabimperle.c9users.io/proto1/createPM.php";
         public final static String GET_MY_PMS = "https://payme-schabimperle.c9users.io/proto1/getMyPMs.php";
         public final static String MYADMIN = "https://payme-schabimperle.c9users.io/phpmyadmin/";
