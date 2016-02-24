@@ -21,10 +21,6 @@ public class MainPresenter implements OnResponseListener{
         this.apiInteractor.getMyPMs(this);
     }
 
-    public void onAddPressed(){
-        this.apiInteractor.createPm("Einkauf", "", new String[]{"user"}, 15.2, this);
-    }
-
     @Override
     public void onResponse(String statusCode, String action, String data) {
         Log.d(TAG,"statuscode: " + statusCode);
@@ -38,7 +34,7 @@ public class MainPresenter implements OnResponseListener{
                 return;
             }
             Log.d(TAG,"data: " + data);
-            view.setData(data);
+//            view.setData(data);
         }
     }
 }
