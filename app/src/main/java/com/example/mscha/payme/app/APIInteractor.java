@@ -42,13 +42,13 @@ public class APIInteractor {
         sendAsyncRequest(API.URLs.LOGIN, request, listener);
     }
 
-    public void createPm(String name, String description, String[] debtors, double price, OnResponseListener onResponseListener) {
+    public void createPm(String title, String description, String[] debtors, double price, OnResponseListener onResponseListener) {
         JSONObject json = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         try {
             for(String debtor : debtors)
                 jsonArray.put(debtor);
-            json.put("name", name)
+            json.put("name", title)
                     .put("description", description)
                     .put("debtors", jsonArray)
                     .put("price", price);
@@ -117,9 +117,10 @@ public class APIInteractor {
                 while ((line = buff.readLine()) != null)
                     answerBuilder.append(line).append("\n");
                 String answer = answerBuilder.toString();
-                Log.d(TAG, "Answer: " + answer);
 
+                Log.d(TAG, "Answer: " + answer);
                 Log.d(TAG, "Statuscode: " + con.getHeaderField(API.HeaderFields.ERROR));
+                Log.d(TAG, "ActionCode: " + con.getHeaderField(API.HeaderFields.ACTION));
 
                 this.getSessionCookie(con.getHeaderFields().get("Set-Cookie"));
                 return new String[]{con.getHeaderField(API.HeaderFields.ERROR), con.getHeaderField(API.HeaderFields.ACTION), answer};
