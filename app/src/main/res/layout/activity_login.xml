@@ -42,9 +42,9 @@
             android:id="@+id/remember_me"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checkMark="@drawable/abc_btn_check_material"
-            android:gravity="center|right"
+            android:layout_gravity="end"
+            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+            android:gravity="center|end"
             android:padding="@dimen/pm_padding"
             android:text="@string/remember_me_checkbox_text" />
 
