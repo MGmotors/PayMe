@@ -85,7 +85,7 @@ public class APIInteractor {
     }
 
     public String byteToString(byte[] bytes) {
-        return Base64.encodeToString(bytes, Base64.DEFAULT);
+        return Base64.encodeToString(bytes, Base64.NO_WRAP);
     }
 
     private class SendAsyncRequest extends AsyncTask<Void, Void, String[]> {

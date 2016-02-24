@@ -24,6 +24,7 @@ public class LoginPresenter implements OnResponseListener {
         String email = sharedPreferences.getString("email", null);
         String hashedPassword = sharedPreferences.getString("hashedPassword", null);
         if (email != null && hashedPassword != null) {
+            this.view.showProgress();
             //TODO debug code...
             Log.d(TAG, "load email: " + email);
             Log.d(TAG, "load hashedPassword: " + hashedPassword);
@@ -62,7 +63,7 @@ public class LoginPresenter implements OnResponseListener {
     }
 
     public void onType(String email, String password) {
-        if(email.contains("@") && !password.isEmpty())
+        if (email.contains("@") && !password.isEmpty())
             this.view.enableLoginButton(true);
         else
             this.view.enableLoginButton(false);
