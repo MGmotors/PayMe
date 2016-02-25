@@ -35,4 +35,7 @@
     <string name="empty_price_error">Please enter a price</string>
     <string name="price_format_error">Only numbers are allowed here</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="payme_fragment_tab_title">PayMe\'s</string>
+    <string name="paythem_fragment_tab_title">PayThem\'s</string>
+    <string name="refreshBtnText">Refresh</string>
 </resources>

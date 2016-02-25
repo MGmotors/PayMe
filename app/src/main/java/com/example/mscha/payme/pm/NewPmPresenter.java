@@ -3,14 +3,14 @@ package com.example.mscha.payme.pm;
 import com.example.mscha.payme.app.APIInteractor;
 import com.example.mscha.payme.app.OnResponseListener;
 
-public class PmPresenter implements OnResponseListener{
+public class NewPmPresenter implements OnResponseListener {
 
-    private static final String TAG = "PmPresenter";
-    private PmActivity view;
+    private static final String TAG = "NewPmPresenter";
+    private NewPmActivity view;
     private APIInteractor apiInteractor;
     private String[] debtorsDummyData = new String[] {"max"};
 
-    public PmPresenter(PmActivity view) {
+    public NewPmPresenter(NewPmActivity view) {
         this.view = view;
         this.apiInteractor = new APIInteractor();
     }

@@ -9,9 +9,9 @@ import android.widget.ImageButton;
 
 import com.example.mscha.payme.R;
 
-public class PmActivity extends AppCompatActivity implements View.OnClickListener {
+public class NewPmActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private PmPresenter presenter;
+    private NewPmPresenter presenter;
     private EditText titleED;
     private EditText descriptionED;
     private EditText priceEd;
@@ -20,7 +20,7 @@ public class PmActivity extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pm);
-        presenter = new PmPresenter(this);
+        presenter = new NewPmPresenter(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.pm_toolbar);
         setSupportActionBar(toolbar);
 

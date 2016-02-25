@@ -22,7 +22,7 @@
         <activity
             android:name=".register.RegisterActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
-        <activity android:name=".pm.PmActivity" />
+        <activity android:name=".pm.NewPmActivity" />
         <activity
             android:name=".main.MainActivity"
             android:label="@string/title_activity_main"

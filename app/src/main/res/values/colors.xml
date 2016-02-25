@@ -3,5 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorText">#000000</color>
+    <color name="colorAppBackground">#efefef</color>
+    <color name="colorSecondaryText">#767676</color>
+    <color name="colorListItemsBackground">#ffffff</color>
 </resources>

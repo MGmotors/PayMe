@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/colorPrimary"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:layout_scrollFlags="scroll|enterAlways">
 
     <ImageButton
         android:id="@+id/send_btn"
@@ -13,7 +14,7 @@
         android:layout_gravity="end"
         android:adjustViewBounds="true"
         android:background="@null"
-        android:src="@drawable/ic_menu_send"
+        android:src="@android:drawable/ic_menu_send"
         android:visibility="gone">
     </ImageButton>
 
