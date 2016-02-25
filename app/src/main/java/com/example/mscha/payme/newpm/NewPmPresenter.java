@@ -1,4 +1,4 @@
-package com.example.mscha.payme.pm;
+package com.example.mscha.payme.newpm;
 
 import com.example.mscha.payme.app.APIInteractor;
 import com.example.mscha.payme.app.OnResponseListener;
@@ -37,6 +37,7 @@ public class NewPmPresenter implements OnResponseListener {
         }
 
         if(!inputError) {
+            this.view.showProgressDialog(true);
             this.apiInteractor.createPm(title, description, debtorsDummyData, price, this);
         }
     }
@@ -45,6 +46,7 @@ public class NewPmPresenter implements OnResponseListener {
     public void onResponse(String statusCode, String action, String data) {
         //TODO fehlerbehandlung
         if(statusCode.equals("0"))
+            this.view.showProgressDialog(false);
             view.finish();
     }
 }

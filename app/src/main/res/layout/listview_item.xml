@@ -7,56 +7,63 @@
     android:layout_marginRight="8dp"
     android:layout_marginTop="4dp"
     android:background="@color/colorListItemsBackground"
-    android:padding="@dimen/pm_padding">
+    android:padding="@dimen/list_item_padding">
 
     <TextView
         android:id="@+id/pmHistoryTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/pmHistoryDate"
-        android:layout_toStartOf="@+id/pmHistoryDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/pmHistoryDateTime"
+        android:layout_toStartOf="@+id/pmHistoryDateTime"
         android:singleLine="true"
         android:text="Titel"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:textColor="@color/colorPrimaryText" />
 
     <TextView
         android:id="@+id/pmHistoryDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/pmHistoryTitle"
-        android:layout_alignRight="@+id/pmHistoryTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/pmHistoryTitle"
-        android:text="Einkauf Donnerstag: Shampoo, usw lkj  alksjdf alksjdf alksdjf alksj dfoiwwe todfjgölkajsd f"
+        android:layout_toLeftOf="@+id/pmHistoryPrice"
+        android:layout_toStartOf="@+id/pmHistoryPrice"
+        android:maxLines="3"
+        android:text="Einkauf Donnerstag: Shampoo, usw lkj  alksjdf alksjdf alksdjf alksj dfoiwwe todfjgölkajsd f asdölkfj asldkjf wlkjwer lacpogiuerljklrntaösdoudf aqioweur asldjk foase rölijq"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/colorSecondaryText" />
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/listview_item_textsize_description" />
 
     <TextView
-        android:id="@+id/pmHistoryDate"
+        android:id="@+id/pmHistoryDateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:gravity="top|end"
-        android:minWidth="80dp"
         android:singleLine="true"
         android:text="13:23 - 20.11.29"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/colorSecondaryText" />
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/listview_item_textsize_date" />
 
     <TextView
         android:id="@+id/pmHistoryPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/pmHistoryDescription"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:gravity="bottom|end"
-        android:minWidth="80dp"
+        android:paddingLeft="@dimen/list_item_padding"
         android:singleLine="true"
-        android:text="50"
+        android:text="50 €"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/colorSecondaryText" />
+        android:textColor="@color/colorPrimaryText"
+        android:textStyle="bold" />
 
 </RelativeLayout>

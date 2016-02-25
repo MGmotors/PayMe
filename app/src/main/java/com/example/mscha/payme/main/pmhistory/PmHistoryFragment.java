@@ -3,6 +3,7 @@ package com.example.mscha.payme.main.pmhistory;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,8 +18,10 @@ import java.util.List;
 public class PmHistoryFragment extends Fragment {
 
     private static final String TAG = "PtHistoryFragment";
-    private OnListFragmentInteractionListener listener;
-    private PmHistoryItemRecyclerViewAdapter adapter;
+    private OnListFragmentInteractionListener interactionListener;
+    private SwipeRefreshLayout.OnRefreshListener refreshListener;
+    private PmHistoryAdapter adapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public PmHistoryFragment() {
     }
@@ -32,34 +35,40 @@ public class PmHistoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pm_history_item_list, container, false);
 
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(refreshListener);
+
         Context context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view;
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.pmFragmentRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        adapter = new PmHistoryItemRecyclerViewAdapter(new ArrayList<PmHistoryItem>(), listener);
+        adapter = new PmHistoryAdapter(new ArrayList<PmHistoryItem>(), interactionListener);
         recyclerView.setAdapter(adapter);
 
         return view;
     }
 
     public void updateListView(List<PmHistoryItem> pmHistoryItems) {
-        this.adapter.updateItems(pmHistoryItems);
+        this.adapter.updateAllItems(pmHistoryItems);
+        this.swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            listener = (OnListFragmentInteractionListener) context;
+        if (context instanceof OnListFragmentInteractionListener && context instanceof SwipeRefreshLayout.OnRefreshListener) {
+            interactionListener = (OnListFragmentInteractionListener) context;
+            refreshListener = (SwipeRefreshLayout.OnRefreshListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
+                    + " must implement OnListFragmentInteractionListener and SwipeRefreshLayout.OnRefreshListener");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        listener = null;
+        interactionListener = null;
+        refreshListener = null;
     }
 
     public interface OnListFragmentInteractionListener {

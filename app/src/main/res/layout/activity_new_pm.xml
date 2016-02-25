@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".pm.NewPmActivity">
+    tools:context=".newpm.NewPmActivity">
 
     <include
         android:id="@+id/pm_toolbar"
@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/pm_title"
+            android:inputType="textAutoCorrect"
             android:padding="@dimen/pm_padding" />
 
         <EditText
@@ -32,8 +33,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:gravity="top|start"
             android:hint="@string/pm_description"
-            android:padding="@dimen/pm_padding" />
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:padding="@dimen/pm_padding"
+            android:scrollbars="vertical" />
 
         <EditText
             android:id="@+id/priceEditText"

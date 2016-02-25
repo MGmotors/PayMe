@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,11 +21,11 @@ import android.view.ViewGroup;
 import com.example.mscha.payme.R;
 import com.example.mscha.payme.main.pmhistory.PmHistoryFragment;
 import com.example.mscha.payme.main.pmhistory.PmHistoryItem;
-import com.example.mscha.payme.pm.NewPmActivity;
+import com.example.mscha.payme.newpm.NewPmActivity;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements PmHistoryFragment.OnListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, PmHistoryFragment.OnListFragmentInteractionListener {
 
     private static final String TAG = "MainActivity";
     private SectionsPagerAdapter sectionsPagerAdapter;
@@ -61,13 +62,18 @@ public class MainActivity extends AppCompatActivity implements PmHistoryFragment
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.onResume();
+    }
+
     public void updatePmHistoryItems(List<PmHistoryItem> items) {
         PmHistoryFragment pmHistoryFragment = (PmHistoryFragment) sectionsPagerAdapter.getRegisteredFragment(0);
         if (pmHistoryFragment != null) {
-            Log.d(TAG, items.get(0).toString());
             pmHistoryFragment.updateListView(items);
         } else {
-            Log.d(TAG, "pmHistoryFragment = null");
+            Log.e(TAG, "pmHistoryFragment = null");
         }
     }
 
@@ -86,9 +92,7 @@ public class MainActivity extends AppCompatActivity implements PmHistoryFragment
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_refresh) {
-            this.presenter.onRefreshClicked();
-        } else if (id == R.id.action_settings) {
+        if (id == R.id.action_settings) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -96,7 +100,13 @@ public class MainActivity extends AppCompatActivity implements PmHistoryFragment
 
     @Override
     public void onListFragmentInteraction(PmHistoryItem pmHistoryItem) {
+        //TODO hier detail view starten
         Log.d(TAG, pmHistoryItem.toString());
+    }
+
+    @Override
+    public void onRefresh() {
+        presenter.onRefreshClicked();
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -135,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements PmHistoryFragment
         public Object instantiateItem(ViewGroup container, int position) {
             Fragment fragment = (Fragment) super.instantiateItem(container, position);
             registeredFragments.put(position, fragment);
-            Log.d(TAG, "Fragment has been added at: " + position);
+            Log.d(TAG, "Fragment has been added at position: " + position);
             return fragment;
         }
 
