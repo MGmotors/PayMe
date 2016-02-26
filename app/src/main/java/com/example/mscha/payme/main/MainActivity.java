@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         //TODO toolbar zu hoch korrigieren
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage(getString(R.string.logging_in));
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -138,10 +137,19 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         presenter.onRefreshClicked();
     }
 
-    public void showProgressDialog(boolean show) {
-        if (show)
+    public void showLoginProgressDialog(boolean show) {
+        if (show) {
+            progressDialog.setMessage(getString(R.string.logging_in));
             this.progressDialog.show();
-        else
+        } else
+            this.progressDialog.hide();
+    }
+
+    public void showLogoutProgressDialog(boolean show) {
+        if (show) {
+            progressDialog.setMessage(getString(R.string.logout_progress_dialog_message));
+            this.progressDialog.show();
+        } else
             this.progressDialog.hide();
     }
 

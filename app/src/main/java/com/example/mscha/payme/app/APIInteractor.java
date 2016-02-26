@@ -49,9 +49,9 @@ public class APIInteractor {
 
     //apiInteractor.clearCookie() in callback aufrufen nicht vergessen (cookie muss bei logout noch mitgeschickt werden)
     public void logout(OnResponseListener listener) {
-//        HttpPost request = new HttpPost();
-//        request.put(API.HeaderFields.ACTION, API.ActionCodes.LOGOUT);
-//        sendAsyncRequest(API.URLs.LOGOUT, request, listener);
+        HttpPost request = new HttpPost();
+        request.put(API.HeaderFields.ACTION, API.ActionCodes.LOGOUT);
+        sendAsyncRequest(API.URLs.LOGOUT, request, listener);
     }
 
     public void clearCookie() {
@@ -138,7 +138,9 @@ public class APIInteractor {
                 Log.d(TAG, "Statuscode: " + con.getHeaderField(API.HeaderFields.ERROR));
                 Log.d(TAG, "ActionCode: " + con.getHeaderField(API.HeaderFields.ACTION));
 
+                //TODO session cookie wird zwei mal gesetzt, warum?
                 this.getSessionCookie(con.getHeaderFields().get("Set-Cookie"));
+
                 return new String[]{con.getHeaderField(API.HeaderFields.ERROR), con.getHeaderField(API.HeaderFields.ACTION), answer};
             } catch (IOException e) {
                 e.printStackTrace();
@@ -149,8 +151,10 @@ public class APIInteractor {
         private void getSessionCookie(List<String> cookies) {
             if(cookies != null)
                 for(String cookie : cookies)
-                    if(cookie.startsWith("PHPSESSID="))
+                    if (cookie.startsWith("PHPSESSID=")) {
                         sessionCookie = cookie;
+                        Log.d(TAG, "Cookie set: " + cookie);
+                    }
         }
 
         @Override

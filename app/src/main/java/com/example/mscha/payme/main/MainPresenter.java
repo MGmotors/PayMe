@@ -44,7 +44,7 @@ public class MainPresenter implements OnResponseListener{
         String email = sharedPreferences.getString("email", null);
         String hashedPassword = sharedPreferences.getString("hashedPassword", null);
         if (email != null && hashedPassword != null) {
-            this.view.showProgressDialog(true);
+            this.view.showLoginProgressDialog(true);
             //TODO debug code...
             Log.d(TAG, "load email: " + email);
             Log.d(TAG, "load hashedPassword: " + hashedPassword);
@@ -55,7 +55,6 @@ public class MainPresenter implements OnResponseListener{
         }
     }
 
-    //TODO logout einbauen und das hier aufrufen
     private void clearSavedCredentials() {
         SharedPreferences sharedPreferences = view.getSharedPreferences(LoginActivity.SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -70,20 +69,33 @@ public class MainPresenter implements OnResponseListener{
     }
 
     @Override
-    public void onResponse(String statusCode, String action, String data) {
+    public void onResponse(String statusCode, String actionCode, String data) {
         //TODO fehlerbehandlung
-        if (statusCode.equals(API.ErrorCodes.NO_ERROR) && action.equals(API.ActionCodes.GET_MY_PMS)) {
-            if(data == null){
-                Log.e(TAG, "nix data");
-                return;
-            }
-            this.view.updatePmHistoryItems(parseJsonString(data));
-        } else if (statusCode.equals(API.ErrorCodes.NO_ERROR) && action.equals(API.ActionCodes.LOGIN)) {
-            Log.d(TAG, "Login Successful");
-            getMyPMs();
-            this.view.showProgressDialog(false);
-        } else
-            Log.d(TAG, "Error! Action code: " + action + ", Status code: " + statusCode);
+        if (!statusCode.equals(API.ErrorCodes.NO_ERROR)) {
+            Log.d(TAG, "Error! Action code: " + actionCode + ", Status code: " + statusCode);
+            this.view.showLoginProgressDialog(false);
+            this.view.showLogoutProgressDialog(false);
+            return;
+        }
+
+        switch (actionCode) {
+            case API.ActionCodes.GET_MY_PMS:
+                this.view.updatePmHistoryItems(parseJsonString(data));
+                break;
+            case API.ActionCodes.LOGIN:
+                Log.d(TAG, "Login successful");
+                getMyPMs();
+                this.view.showLoginProgressDialog(false);
+                break;
+            case API.ActionCodes.LOGOUT:
+                apiInteractor.clearCookie();
+                view.showLogoutProgressDialog(false);
+                Log.d(TAG, "Logged out");
+                view.navigateToLogin();
+                break;
+            default:
+                break;
+        }
     }
 
     public List<PmHistoryItem> parseJsonString(String data) {
@@ -120,8 +132,8 @@ public class MainPresenter implements OnResponseListener{
     }
 
     public void onLogoutClicked() {
-        clearSavedCredentials();
+        this.view.showLogoutProgressDialog(true);
+        this.clearSavedCredentials();
         apiInteractor.logout(this);
-        view.navigateToLogin();
     }
 }

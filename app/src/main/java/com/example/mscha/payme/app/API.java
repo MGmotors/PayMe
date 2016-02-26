@@ -2,10 +2,11 @@ package com.example.mscha.payme.app;
 
 public class API {
     public static class ActionCodes{
-        public final static String LOGIN = "1";
         public final static String REGISTER = "0";
-        public final static String CREATEPM = "2";
-        public final static String GET_MY_PMS = "3";
+        public final static String LOGIN = "1";
+        public final static String LOGOUT = "2";
+        public final static String CREATEPM = "3";
+        public final static String GET_MY_PMS = "4";
     }
     public static class ErrorCodes{
         public final static String NO_ERROR = "0";
@@ -30,8 +31,9 @@ public class API {
         public final static String CREATEPM_JSON = "payme-createpm-json";
     }
     public static class URLs{
-        public final static String LOGIN = "https://payme-schabimperle.c9users.io/proto1/login.php";
         public final static String REGISTER = "https://payme-schabimperle.c9users.io/proto1/register.php";
+        public final static String LOGIN = "https://payme-schabimperle.c9users.io/proto1/login.php";
+        public final static String LOGOUT = "https://payme-schabimperle.c9users.io/proto1/logout.php";
         public final static String CREATEPM = "https://payme-schabimperle.c9users.io/proto1/createPM.php";
         public final static String GET_MY_PMS = "https://payme-schabimperle.c9users.io/proto1/getMyPMs.php";
         public final static String MYADMIN = "https://payme-schabimperle.c9users.io/phpmyadmin/";

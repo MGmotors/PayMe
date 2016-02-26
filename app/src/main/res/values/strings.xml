@@ -40,4 +40,5 @@
     <string name="refreshBtnText">Refresh</string>
     <string name="sending_pm_dialog_message">Sending...</string>
     <string name="logout_btn">Logout</string>
+    <string name="logout_progress_dialog_message">Logging out</string>
 </resources>
