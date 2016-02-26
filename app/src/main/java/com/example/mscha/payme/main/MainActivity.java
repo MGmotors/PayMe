@@ -1,5 +1,6 @@
 package com.example.mscha.payme.main;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mscha.payme.R;
+import com.example.mscha.payme.login.LoginActivity;
 import com.example.mscha.payme.main.pmhistory.PmHistoryFragment;
 import com.example.mscha.payme.main.pmhistory.PmHistoryItem;
 import com.example.mscha.payme.newpm.NewPmActivity;
@@ -28,9 +30,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, PmHistoryFragment.OnListFragmentInteractionListener {
 
     private static final String TAG = "MainActivity";
+    private static final int NEW_PM_REQUEST = 0;
     private SectionsPagerAdapter sectionsPagerAdapter;
     private ViewPager viewPager;
     private MainPresenter presenter;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
+        //TODO toolbar zu hoch korrigieren
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(getString(R.string.logging_in));
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -56,16 +64,16 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToNewPm();
+                startNewPm();
             }
         });
 
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        presenter.onResume();
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        presenter.onPostCreate();
     }
 
     public void updatePmHistoryItems(List<PmHistoryItem> items) {
@@ -73,12 +81,30 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         if (pmHistoryFragment != null) {
             pmHistoryFragment.updateListView(items);
         } else {
-            Log.e(TAG, "pmHistoryFragment = null");
+            Log.e(TAG, "pmHistoryFragment is null");
         }
     }
 
-    public void navigateToNewPm() {
-        startActivity(new Intent(getApplicationContext(), NewPmActivity.class));
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == NEW_PM_REQUEST) {
+            if (resultCode == NewPmActivity.RESULT_OK) {
+                this.presenter.onNewPmSent();
+                Log.d(TAG, "New PM was sent");
+            } else if (resultCode == NewPmActivity.RESULT_CANCELED) {
+                Log.d(TAG, "New PM canceled");
+            }
+        }
+    }
+
+    public void startNewPm() {
+        startActivityForResult(new Intent(this, NewPmActivity.class), NEW_PM_REQUEST);
+    }
+
+    public void navigateToLogin() {
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
     }
 
     @Override
@@ -92,9 +118,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            this.presenter.onLogoutClicked();
+        } else if (id == R.id.action_settings) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -107,6 +136,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     public void onRefresh() {
         presenter.onRefreshClicked();
+    }
+
+    public void showProgressDialog(boolean show) {
+        if (show)
+            this.progressDialog.show();
+        else
+            this.progressDialog.hide();
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

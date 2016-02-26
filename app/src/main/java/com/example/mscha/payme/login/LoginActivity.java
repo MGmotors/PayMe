@@ -20,6 +20,7 @@ import com.example.mscha.payme.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String SHARED_PREFS_NAME = "Credentials";
     public static String TAG = "LoginActivity";
     private LoginPresenter presenter;
     private EditText usernameEditText;
@@ -73,8 +74,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if(getIntent().hasExtra("Message"))
             Snackbar.make(findViewById(R.id.login_container), getIntent().getStringExtra("Message"), Snackbar.LENGTH_INDEFINITE).show();
-
-        this.presenter.loginBySavedCredentials();
     }
 
     public void showDatabaseError() {

@@ -23,7 +23,12 @@ import javax.net.ssl.HttpsURLConnection;
 public class APIInteractor {
 
     public final static String TAG = "APIInteractor";
+    //TODO alternative für statische variable suchen
     private static String sessionCookie;
+
+    public boolean loggedIn() {
+        return sessionCookie != null;
+    }
 
     public void register(String username, String email, String hashedPassword, OnResponseListener listener) {
         HttpPost request = new HttpPost();
@@ -40,6 +45,17 @@ public class APIInteractor {
         request.put(API.HeaderFields.EMAIL, email);
         request.put(API.HeaderFields.PASSWORD, hashedPassword);
         sendAsyncRequest(API.URLs.LOGIN, request, listener);
+    }
+
+    //apiInteractor.clearCookie() in callback aufrufen nicht vergessen (cookie muss bei logout noch mitgeschickt werden)
+    public void logout(OnResponseListener listener) {
+//        HttpPost request = new HttpPost();
+//        request.put(API.HeaderFields.ACTION, API.ActionCodes.LOGOUT);
+//        sendAsyncRequest(API.URLs.LOGOUT, request, listener);
+    }
+
+    public void clearCookie() {
+        sessionCookie = null;
     }
 
     public void createPm(String title, String description, String[] debtors, double price, OnResponseListener onResponseListener) {
@@ -118,7 +134,7 @@ public class APIInteractor {
                     answerBuilder.append(line).append("\n");
                 String answer = answerBuilder.toString();
 
-                Log.d(TAG, "Answer: " + answer);
+                //Log.d(TAG, "Answer: " + answer);
                 Log.d(TAG, "Statuscode: " + con.getHeaderField(API.HeaderFields.ERROR));
                 Log.d(TAG, "ActionCode: " + con.getHeaderField(API.HeaderFields.ACTION));
 
@@ -126,7 +142,7 @@ public class APIInteractor {
                 return new String[]{con.getHeaderField(API.HeaderFields.ERROR), con.getHeaderField(API.HeaderFields.ACTION), answer};
             } catch (IOException e) {
                 e.printStackTrace();
-                return new String[]{API.ErrorCodes.UNKNOWN_ERROR};
+                return null;
             }
         }
 
@@ -139,15 +155,12 @@ public class APIInteractor {
 
         @Override
         protected void onPostExecute(String[] string) {
-            if (string.length < 3) {
-                onResponse.onResponse(API.ErrorCodes.UNKNOWN_ERROR, null, null);
-                return;
-            }
-            if(string[0] == null) {
+            if (string == null) {
                 onResponse.onResponse(API.ErrorCodes.SERVER_ERROR, null, null);
-                return;
-            }
-            onResponse.onResponse(string[0],string[1],string[2]);
+            } else if (string[0] == null) {
+                onResponse.onResponse(API.ErrorCodes.SERVER_ERROR, null, null);
+            } else
+                onResponse.onResponse(string[0], string[1], string[2]);
         }
     }
 

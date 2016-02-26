@@ -1,10 +1,13 @@
 package com.example.mscha.payme.main;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.mscha.payme.app.API;
 import com.example.mscha.payme.app.APIInteractor;
 import com.example.mscha.payme.app.OnResponseListener;
+import com.example.mscha.payme.login.LoginActivity;
 import com.example.mscha.payme.main.pmhistory.PmHistoryItem;
 
 import org.json.JSONArray;
@@ -27,6 +30,41 @@ public class MainPresenter implements OnResponseListener{
         this.apiInteractor = new APIInteractor();
     }
 
+
+    public void onPostCreate() {
+        tryLoginByStoredCredentials();
+    }
+
+    public void tryLoginByStoredCredentials() {
+        if (apiInteractor.loggedIn()) {
+            getMyPMs();
+            return;
+        }
+        SharedPreferences sharedPreferences = view.getSharedPreferences(LoginActivity.SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", null);
+        String hashedPassword = sharedPreferences.getString("hashedPassword", null);
+        if (email != null && hashedPassword != null) {
+            this.view.showProgressDialog(true);
+            //TODO debug code...
+            Log.d(TAG, "load email: " + email);
+            Log.d(TAG, "load hashedPassword: " + hashedPassword);
+            this.apiInteractor.login(email, hashedPassword, this);
+        } else {
+            Log.d(TAG, "No stored credentials");
+            this.view.navigateToLogin();
+        }
+    }
+
+    //TODO logout einbauen und das hier aufrufen
+    private void clearSavedCredentials() {
+        SharedPreferences sharedPreferences = view.getSharedPreferences(LoginActivity.SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("email");
+        editor.remove("hashedPassword");
+        Log.d(TAG, "Credentials cleared");
+        editor.apply();
+    }
+
     public void getMyPMs(){
         this.apiInteractor.getMyPMs(this);
     }
@@ -40,13 +78,12 @@ public class MainPresenter implements OnResponseListener{
                 return;
             }
             this.view.updatePmHistoryItems(parseJsonString(data));
-        } else {
-            Log.d(TAG, "Error! Status code: " + statusCode);
-        }
-    }
-
-    public void onRefreshClicked() {
-        getMyPMs();
+        } else if (statusCode.equals(API.ErrorCodes.NO_ERROR) && action.equals(API.ActionCodes.LOGIN)) {
+            Log.d(TAG, "Login Successful");
+            getMyPMs();
+            this.view.showProgressDialog(false);
+        } else
+            Log.d(TAG, "Error! Action code: " + action + ", Status code: " + statusCode);
     }
 
     public List<PmHistoryItem> parseJsonString(String data) {
@@ -63,7 +100,7 @@ public class MainPresenter implements OnResponseListener{
                 String price = String.valueOf(pm.get("price"));
                 Date dateTime = Timestamp.valueOf(String.valueOf(pm.get("datetime")));
                 PmHistoryItem item = new PmHistoryItem(name, description, debtors, dateTime, Double.parseDouble(price));
-                Log.d(TAG, "Item " + i + ": " + item.toString());
+                //Log.d(TAG, "Item " + i + ": " + item.toString());
                 items.add(item);
             }
 
@@ -73,7 +110,18 @@ public class MainPresenter implements OnResponseListener{
         return items;
     }
 
-    public void onResume() {
+    public void onRefreshClicked() {
         getMyPMs();
+    }
+
+    public void onNewPmSent() {
+        //TODO hier vielleicht pm eizeln einfügen und nicht alle updaten?
+        getMyPMs();
+    }
+
+    public void onLogoutClicked() {
+        clearSavedCredentials();
+        apiInteractor.logout(this);
+        view.navigateToLogin();
     }
 }

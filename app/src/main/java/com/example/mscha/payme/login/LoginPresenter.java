@@ -19,41 +19,17 @@ public class LoginPresenter implements OnResponseListener {
         this.apiInteractor = new APIInteractor();
     }
 
-    public void loginBySavedCredentials() {
-        SharedPreferences sharedPreferences = view.getPreferences(Context.MODE_PRIVATE);
-        String email = sharedPreferences.getString("email", null);
-        String hashedPassword = sharedPreferences.getString("hashedPassword", null);
-        if (email != null && hashedPassword != null) {
-            this.view.showProgress();
-            //TODO debug code...
-            Log.d(TAG, "load email: " + email);
-            Log.d(TAG, "load hashedPassword: " + hashedPassword);
-            this.apiInteractor.login(email, hashedPassword, this);
-        }
-    }
-
     public void onLoginClicked(String email, String password, boolean remember) {
         view.showProgress();
         String hashedPassword = apiInteractor.byteToString(apiInteractor.hash(password));
-        if (remember) {
+        if (remember)
             saveCredentials(email, hashedPassword);
-        } else {
-            clearSavedCredentials();
-        }
         this.apiInteractor.login(email, hashedPassword, this);
     }
 
-    private void clearSavedCredentials() {
-        SharedPreferences sharedPreferences = view.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("email");
-        editor.remove("hashedPassword");
-        Log.d(TAG, "Credentials cleared");
-        editor.apply();
-    }
-
     private void saveCredentials(String email, String hashedPassword) {
-        SharedPreferences sharedPreferences = view.getPreferences(Context.MODE_PRIVATE);
+        //TODO sharedPrefs name ändern
+        SharedPreferences sharedPreferences = view.getSharedPreferences(LoginActivity.SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("email", email);
         editor.putString("hashedPassword", hashedPassword);

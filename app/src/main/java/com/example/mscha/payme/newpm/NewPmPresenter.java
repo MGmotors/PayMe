@@ -1,5 +1,7 @@
 package com.example.mscha.payme.newpm;
 
+import android.app.Activity;
+
 import com.example.mscha.payme.app.APIInteractor;
 import com.example.mscha.payme.app.OnResponseListener;
 
@@ -45,8 +47,10 @@ public class NewPmPresenter implements OnResponseListener {
     @Override
     public void onResponse(String statusCode, String action, String data) {
         //TODO fehlerbehandlung
-        if(statusCode.equals("0"))
+        if (statusCode.equals("0")) {
             this.view.showProgressDialog(false);
+            view.setResult(Activity.RESULT_OK);
             view.finish();
+        }
     }
 }

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -12,6 +13,7 @@ import com.example.mscha.payme.R;
 
 public class NewPmActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "NewPmActivity";
     private NewPmPresenter presenter;
     private EditText titleET;
     private EditText descriptionET;
@@ -25,6 +27,8 @@ public class NewPmActivity extends AppCompatActivity implements View.OnClickList
         presenter = new NewPmPresenter(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.pm_toolbar);
         setSupportActionBar(toolbar);
+        //noinspection ConstantConditions
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.sending_pm_dialog_message));
@@ -37,6 +41,14 @@ public class NewPmActivity extends AppCompatActivity implements View.OnClickList
         descriptionET = (EditText) findViewById(R.id.descriptionEditText);
         priceET = (EditText) findViewById(R.id.priceEditText);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
