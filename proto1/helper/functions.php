@@ -18,7 +18,15 @@ function setErrorHeader($code){
     header(getHeaderName("ERROR"). ":" . getErrorCode($code) );
 }
 
-function error($type){
+function error($type, $description = ""){
+    if($description != ""){
+        if((DEBUG_LEVEL & 0b01)>0){
+            file_put_contents(SERVER_LOG,$description . \n,FILE_APPEND);
+        }
+        if((DEBUG_LEVEL & 0b10)>0){
+            print($description . \n);
+        }
+    }
     setErrorHeader($type);
     die();
 }

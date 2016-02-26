@@ -16,14 +16,15 @@ checkAction("GET_MY_PMS");
 
 $id= $_SESSION["uid"];
 $myPMs = getMyPMs($id);
-$print = "{[ ";
+$print = "{\"myPMs\":[ ";
 for($i = 0; $i<sizeof($myPMs);$i++){
     $row = $myPMs[$i];
     $s = 
-    "{  'name': '".$row["name"]."' 
-        'decription' : '".$row["description"]."'    
-        'debtors' : ".getDebtorNamesAndStateInJSON($row["id"])."
-        'price' : ".$row["price"]."
+    "{  \"name\": \"".$row["name"]."\", 
+        \"description\" : \"".$row["description"]."\",    
+        \"debtors\" : ".getDebtorNamesAndStateInJSON($row["id"]).",
+        \"price\" : ".$row["price"].",
+        \"datetime\" : \"" .$row["datetime"] . "\"
     }";
     if(($i+1) < sizeof($myPMs)){
         $s .= ",";
@@ -39,13 +40,13 @@ setErrorHeader("NO_ERROR");
 #################### Functions #######################
 ######################################################
 
-function getMyPMs($id){
+function getMyPMs($uid){
     try{
         $con = new PDO( DB_DSN, DB_USER, DB_PASSWORD );
         $con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
         $sql = "SELECT * FROM payme WHERE user_id = :id";
         $stmt = $con->prepare($sql);
-        $stmt->bindValue( "id", $id);
+        $stmt->bindValue( "id", $uid);
         $succ = $stmt->execute();
         if(!$succ){
             $arr = $stmt->errorInfo();
@@ -79,7 +80,7 @@ function getDebtorNamesAndStateInJSON($paymeID){
     
     for($i= 0; $i<sizeof($result);$i++){
         $row = $result[$i];
-        $str.=  "  {'name': '" .$row["username"] ."','haspayed' : '".$row["has_payed"]."' } \r";
+        $str.=  "  {\"name\": \"" .$row["username"] ."\",\"haspayed\" : ".$row["has_payed"]." } \r";
         if(($i+1)<sizeof($result)){
             $str.=",";
         }

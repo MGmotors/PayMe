@@ -5,33 +5,26 @@
     
     checkAction("CREATEPM");
     
-    $json = null;
-    //Check data
-    if(isset($_POST[getHeaderName("CREATEPM_JSON")])){
-        $json = json_decode($_POST[getHeaderName("CREATEPM_JSON")],true);
-        if(!$json){
-            error("BAD_DATA");
-        }    
-    }else{
-        error("EMPTY_FIELD");
-    }
+    $json = json_decode(getFieldOrDie("CREATEPM_JSON"),true);
+    if(!$json){
+        error("BAD_DATA","could not parse json");
+    }    
+    
     
     //parse
     $name = $json["name"];
     $description = $json["description"];
     $price = str_replace( ',', '.', $json["price"]);
-    print($price);
-    $debtors = $json["debtors"];
+    $debtors = array_unique($json["debtors"]);
     if(!$name || !$price || !$description || !$debtors || sizeof($debtors) < 1){
-        error("BAD_DATA");
+        error("BAD_DATA", "name,price,description or debtors empty");
     }
-    
 
 //INSERT new payme
 try{    
     $con = new PDO( DB_DSN, DB_USER, DB_PASSWORD );
     $con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
-    $sql = "INSERT INTO payme (name,description,user_id,date,price) VALUES (:name,:description,:user_id,NOW(),:price)";
+    $sql = "INSERT INTO payme (name,description,user_id,datetime,price) VALUES (:name,:description,:user_id,NOW(),:price)";
     $stmt = $con->prepare($sql);
     $stmt->bindValue( "name", $name);
     $stmt->bindValue( "description", $description);
@@ -78,7 +71,7 @@ try{
      dbError($e->getMessage());
 }
 if(sizeof($valid) < 1){
-    error("BAD_DATA");
+    error("BAD_DATA","found DebtorID count < 1");
 }
 $debtorids = $valid;
 

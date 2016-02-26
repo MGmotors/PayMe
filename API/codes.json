@@ -1,10 +1,11 @@
 {
     "ActionCodes":
     {
-        "LOGIN": "1",
         "REGISTER": "0",
-        "CREATEPM":"2",
-        "GET_MY_PMS":"3"
+        "LOGIN": "1",
+        "LOGOUT": "2",
+        "CREATEPM":"3",
+        "GET_MY_PMS":"4"
     },
     "ErrorCodes":
     {
@@ -18,7 +19,8 @@
         "EMAIL_TAKEN": "7",
         "BAD_DATA": "8",
         "NAME_PW_MISMATCH": "9",
-        "NOT_LOGGEDIN":"10"
+        "NOT_LOGGEDIN":"10",
+        "SERVER_ERROR" : "11"
     },
     "HeaderFields":
     {
@@ -32,8 +34,18 @@
     "URLs":{
         "REGISTER":"https://payme-schabimperle.c9users.io/proto1/register.php",
         "LOGIN":"https://payme-schabimperle.c9users.io/proto1/login.php",
+        "LOGOUT":"https://payme-schabimperle.c9users.io/proto1/logout.php",
         "CREATEPM":"https://payme-schabimperle.c9users.io/proto1/createPM.php",
         "GET_MY_PMS":"https://payme-schabimperle.c9users.io/proto1/getMyPMs.php",
         "MYADMIN":"https://payme-schabimperle.c9users.io/phpmyadmin/"
+    },
+    "JSON":{
+        "PM_ARRAY":"myPMs",
+        "NAME":"name",
+        "DESCRIPTION":"description",
+        "DEBTORS_ARRAY":"debtors",
+        "PRICE":"price",
+        "DATETIME":"datetime",
+        "HAS_PAYED":"haspayed"
     }
 }

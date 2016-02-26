@@ -19,13 +19,11 @@ if(isset($_POST[getHeaderName("USERNAME")]) && isset($_POST[getHeaderName("PASSW
 }
 
 //more checks
-if(strlen($username) < 4 ){
-    print($username);
-    error("BAD_DATA");
+if(strlen($username) < 3 ){
+    error("BAD_DATA","Username to short " . $username);
 }
 if (filter_var($email, FILTER_VALIDATE_EMAIL)){
-     print("2");
-    error("BAD_DATA");
+    error("BAD_DATA", "email not valid " . $email);
 }
 
 //check if Email ist already in use

@@ -1,6 +1,9 @@
-[23-Feb-2016 13:19:53 UTC] PHP Parse error:  syntax error, unexpected '$passwd' (T_VARIABLE) in /home/ubuntu/workspace/proto1/register.php on line 6
-[23-Feb-2016 13:27:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/ubuntu/workspace/proto1/getMyPMs.php:35) in /home/ubuntu/workspace/proto1/helper/functions.php on line 18
-[23-Feb-2016 13:27:59 UTC] PHP Stack trace:
-[23-Feb-2016 13:27:59 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
-[23-Feb-2016 13:27:59 UTC] PHP   2. setErrorHeader() /home/ubuntu/workspace/proto1/getMyPMs.php:36
-[23-Feb-2016 13:27:59 UTC] PHP   3. header() /home/ubuntu/workspace/proto1/helper/functions.php:18
+[26-Feb-2016 12:47:39 UTC] PHP Warning:  Division by zero in /home/ubuntu/workspace/proto1/logout.php on line 10
+[26-Feb-2016 12:47:39 UTC] PHP Stack trace:
+[26-Feb-2016 12:47:39 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/logout.php:0
+[26-Feb-2016 13:08:05 UTC] PHP Warning:  Division by zero in /home/ubuntu/workspace/proto1/logout.php on line 10
+[26-Feb-2016 13:08:05 UTC] PHP Stack trace:
+[26-Feb-2016 13:08:05 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/logout.php:0
+[26-Feb-2016 13:08:24 UTC] PHP Warning:  Division by zero in /home/ubuntu/workspace/proto1/logout.php on line 10
+[26-Feb-2016 13:08:24 UTC] PHP Stack trace:
+[26-Feb-2016 13:08:24 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/logout.php:0
