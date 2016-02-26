@@ -1,16 +1,17 @@
 package com.example.mscha.payme.main.pmhistory;
 
 import java.util.Date;
+import java.util.Map;
 
 public class PmHistoryItem {
 
     public final String title;
     public final String description;
-    public final String debtors;
+    public final Map<String, Boolean> debtors;
     public final double price;
     public final Date dateTime;
 
-    public PmHistoryItem(String title, String description, String debtors, Date dateTime,  double price) {
+    public PmHistoryItem(String title, String description, Map<String, Boolean> debtors, Date dateTime, double price) {
         this.title = title;
         this.description = description;
         this.debtors = debtors;

@@ -116,7 +116,6 @@ public class APIInteractor {
         }
 
         @Override
-        //TODO debug code entfernen
         protected String[] doInBackground(Void... params) {
             try {
                 HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();

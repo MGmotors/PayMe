@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainPresenter implements OnResponseListener{
@@ -45,7 +46,6 @@ public class MainPresenter implements OnResponseListener{
         String hashedPassword = sharedPreferences.getString("hashedPassword", null);
         if (email != null && hashedPassword != null) {
             this.view.showLoginProgressDialog(true);
-            //TODO debug code...
             Log.d(TAG, "load email: " + email);
             Log.d(TAG, "load hashedPassword: " + hashedPassword);
             this.apiInteractor.login(email, hashedPassword, this);
@@ -103,19 +103,30 @@ public class MainPresenter implements OnResponseListener{
         JSONObject jsonObject;
         try {
             jsonObject = new JSONObject(data);
-            JSONArray jsonArray = jsonObject.getJSONArray("myPMs");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject pm = jsonArray.getJSONObject(i);
-                String name = String.valueOf(pm.get("name"));
-                String description = String.valueOf(pm.get("description"));
-                String debtors = String.valueOf(pm.get("debtors"));
-                String price = String.valueOf(pm.get("price"));
-                Date dateTime = Timestamp.valueOf(String.valueOf(pm.get("datetime")));
+            JSONArray myPMsjsonArray = jsonObject.getJSONArray(API.JSON.PM_ARRAY);
+            for (int i = 0; i < myPMsjsonArray.length(); i++) {
+                JSONObject pm = myPMsjsonArray.getJSONObject(i);
+
+                String name = String.valueOf(pm.get(API.JSON.NAME));
+                String description = String.valueOf(pm.get(API.JSON.DESCRIPTION));
+                Date dateTime = Timestamp.valueOf(String.valueOf(pm.get(API.JSON.DATETIME)));
+                String price = String.valueOf(pm.get(API.JSON.PRICE));
+
+                //parse debtors
+                JSONArray debtorsJsonArray = pm.getJSONArray(API.JSON.DEBTORS_ARRAY);
+                HashMap<String, Boolean> debtors = new HashMap<>(debtorsJsonArray.length());
+                for (int j = 0; j < debtorsJsonArray.length(); j++) {
+                    JSONObject debtorJsonObject = debtorsJsonArray.getJSONObject(i);
+                    String debtorName = debtorJsonObject.getString(API.JSON.NAME);
+                    boolean hasPayed = debtorJsonObject.getInt(API.JSON.HAS_PAYED) == 1;
+//                    Log.d(TAG, "    Debtor Name: " + name + ", hasayed: " + hasPayed);
+                    debtors.put(debtorName, hasPayed);
+                }
+
                 PmHistoryItem item = new PmHistoryItem(name, description, debtors, dateTime, Double.parseDouble(price));
-                //Log.d(TAG, "Item " + i + ": " + item.toString());
+                Log.d(TAG, "Item " + i + ": " + item.toString());
                 items.add(item);
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

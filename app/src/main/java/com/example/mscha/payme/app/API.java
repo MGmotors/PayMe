@@ -38,4 +38,14 @@ public class API {
         public final static String GET_MY_PMS = "https://payme-schabimperle.c9users.io/proto1/getMyPMs.php";
         public final static String MYADMIN = "https://payme-schabimperle.c9users.io/phpmyadmin/";
     }
+
+    public static class JSON {
+        public final static String PM_ARRAY = "myPMs";
+        public final static String NAME = "name";
+        public final static String DESCRIPTION = "description";
+        public final static String DEBTORS_ARRAY = "debtors";
+        public final static String PRICE = "price";
+        public final static String DATETIME = "datetime";
+        public final static String HAS_PAYED = "haspayed";
+    }
 }

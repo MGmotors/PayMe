@@ -28,9 +28,10 @@ public class LoginPresenter implements OnResponseListener {
     }
 
     private void saveCredentials(String email, String hashedPassword) {
-        //TODO sharedPrefs name ändern
+        //TODO sharedPrefs name ändern + inhalt verschlüsseln
         SharedPreferences sharedPreferences = view.getSharedPreferences(LoginActivity.SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        //TODO statische variable erstellen?
         editor.putString("email", email);
         editor.putString("hashedPassword", hashedPassword);
         Log.d(TAG, "saved email: " + email);
