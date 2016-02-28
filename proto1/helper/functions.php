@@ -13,6 +13,10 @@ function getActionCode($str){
    return API::$ActionCodes[$str];
 }
 
+function getJSONCode($str) {
+    return API::$JSON[$str];
+}
+
 
 function setErrorHeader($code){
     header(getHeaderName("ERROR"). ":" . getErrorCode($code) );
@@ -63,5 +67,91 @@ function getFieldOrDie($field){
     }
 }
 
+function getName($uid) {
+    try{
+        $con = new PDO( DB_DSN, DB_USER, DB_PASSWORD );
+        $con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
+        $sql = "SELECT username FROM users where id = :id";
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue( "id", $uid);
+        $succ = $stmt->execute();
+        if(!$succ){
+            $arr = $stmt->errorInfo();
+            dbError($arr[2]);
+        }
+        $result = $stmt->fetchAll();
+        return $result[0]["username"];
+    } catch(PDOException $e) {
+       dbError($e->getMessage());
+    }
+}
 
+function getMyPMs($uid){
+    try{
+        $con = new PDO( DB_DSN, DB_USER, DB_PASSWORD );
+        $con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
+        $sql = "SELECT * FROM payme WHERE user_id = :id";
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue( "id", $uid);
+        $succ = $stmt->execute();
+        if(!$succ){
+            $arr = $stmt->errorInfo();
+            dbError($arr[2]);
+        }
+        return $stmt->fetchAll();
+    } catch(PDOException $e) {
+       dbError($e->getMessage());
+    }
+}
+
+function getMyPTs($uid){
+    try{
+        $con = new PDO( DB_DSN, DB_USER, DB_PASSWORD );
+        $con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
+        $sql = "SELECT * FROM debtor, payme WHERE debtor.user_id = :id AND debtor.payme_id = payme.id";
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue( "id", $uid);
+        $succ = $stmt->execute();
+        if(!$succ){
+            $arr = $stmt->errorInfo();
+            dbError($arr[2]);
+        }
+        return $stmt->fetchAll();
+    } catch(PDOException $e) {
+       dbError($e->getMessage());
+    }
+}
+
+function getDebtorNamesAndStateInJSON($paymeID){
+     try{
+        $con = new PDO( DB_DSN, DB_USER, DB_PASSWORD );
+        $con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
+        $sql = "SELECT * FROM debtor, users WHERE debtor.payme_id = :id AND debtor.user_id = users.id";
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue( "id", $paymeID);
+        $succ = $stmt->execute();
+        if(!$succ){
+            $arr = $stmt->errorInfo();
+            dbError($arr[2]);
+        }
+        $result = $stmt->fetchAll();
+        //print_r($result);
+    } catch(PDOException $e) {
+        dbError($e->getMessage());
+    }
+    
+    $str = "[";
+    
+    for($i= 0; $i<sizeof($result);$i++){
+        $row = $result[$i];
+        $str.=  "  {\"username\": \"" .$row["username"] ."\",\"haspayed\" : ".$row["has_payed"]." } \r";
+        if(($i+1)<sizeof($result)){
+            $str.=",";
+        }
+    }
+    
+    $str .= "]";
+    
+    return $str;
+}
 ?>

@@ -1,9 +1,279 @@
-[26-Feb-2016 12:47:39 UTC] PHP Warning:  Division by zero in /home/ubuntu/workspace/proto1/logout.php on line 10
-[26-Feb-2016 12:47:39 UTC] PHP Stack trace:
-[26-Feb-2016 12:47:39 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/logout.php:0
-[26-Feb-2016 13:08:05 UTC] PHP Warning:  Division by zero in /home/ubuntu/workspace/proto1/logout.php on line 10
-[26-Feb-2016 13:08:05 UTC] PHP Stack trace:
-[26-Feb-2016 13:08:05 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/logout.php:0
-[26-Feb-2016 13:08:24 UTC] PHP Warning:  Division by zero in /home/ubuntu/workspace/proto1/logout.php on line 10
-[26-Feb-2016 13:08:24 UTC] PHP Stack trace:
-[26-Feb-2016 13:08:24 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/logout.php:0
+[28-Feb-2016 01:51:19 UTC] PHP Fatal error:  Call to undefined function getCreatorName() in /home/ubuntu/workspace/proto1/getMyPTs.php on line 21
+[28-Feb-2016 01:51:19 UTC] PHP Stack trace:
+[28-Feb-2016 01:51:19 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPTs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:00 UTC] PHP Fatal error:  Call to undefined function getCreatorName() in /home/ubuntu/workspace/proto1/getMyPTs.php on line 21
+[28-Feb-2016 01:55:00 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPTs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:55:01 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:55:01 UTC] PHP Stack trace:
+[28-Feb-2016 01:55:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'name' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 23
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'description' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 24
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'id' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 25
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'price' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 26
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 01:57:37 UTC] PHP Warning:  Illegal string offset 'datetime' in /home/ubuntu/workspace/proto1/getMyPMs.php on line 27
+[28-Feb-2016 01:57:37 UTC] PHP Stack trace:
+[28-Feb-2016 01:57:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPMs.php:0
+[28-Feb-2016 02:07:38 UTC] PHP Fatal error:  Call to undefined function getCreatorName() in /home/ubuntu/workspace/proto1/getMyPTs.php on line 21
+[28-Feb-2016 02:07:38 UTC] PHP Stack trace:
+[28-Feb-2016 02:07:38 UTC] PHP   1. {main}() /home/ubuntu/workspace/proto1/getMyPTs.php:0

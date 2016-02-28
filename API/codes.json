@@ -5,7 +5,8 @@
         "LOGIN": "1",
         "LOGOUT": "2",
         "CREATEPM":"3",
-        "GET_MY_PMS":"4"
+        "GET_MY_PMS":"4",
+        "GET_MY_PTS":"5"
     },
     "ErrorCodes":
     {
@@ -37,11 +38,13 @@
         "LOGOUT":"https://payme-schabimperle.c9users.io/proto1/logout.php",
         "CREATEPM":"https://payme-schabimperle.c9users.io/proto1/createPM.php",
         "GET_MY_PMS":"https://payme-schabimperle.c9users.io/proto1/getMyPMs.php",
+        "GET_MY_PTS":"https://payme-schabimperle.c9users.io/proto1/getMyPTs.php",
         "MYADMIN":"https://payme-schabimperle.c9users.io/phpmyadmin/"
     },
     "JSON":{
-        "PM_ARRAY":"myPMs",
-        "NAME":"name",
+        "PM_ARRAY":"items",
+        "CREATOR":"creator",
+        "TITLE":"title",
         "DESCRIPTION":"description",
         "DEBTORS_ARRAY":"debtors",
         "PRICE":"price",

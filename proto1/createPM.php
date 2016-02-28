@@ -12,7 +12,7 @@
     
     
     //parse
-    $name = $json["name"];
+    $name = $json["username"];
     $description = $json["description"];
     $price = str_replace( ',', '.', $json["price"]);
     $debtors = array_unique($json["debtors"]);
