@@ -1,4 +1,4 @@
-package com.example.mscha.payme.main.pmhistory;
+package com.example.mscha.payme.main.history;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,19 +15,37 @@ import com.example.mscha.payme.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PmHistoryFragment extends Fragment {
+public class HistoryFragment extends Fragment {
 
-    private static final String TAG = "PtHistoryFragment";
+    public static final int PM_FRAGMENT_ID = 0;
+    public static final int PT_FRAGMENT_ID = 1;
+    public static final String TAG = "HistoryFragment";
+    private static final String ARG_FRAGMENT_ID = "fragmentId";
+    private int fragmentId;
     private OnListFragmentInteractionListener interactionListener;
     private SwipeRefreshLayout.OnRefreshListener refreshListener;
-    private PmHistoryAdapter adapter;
+    private RecyclerView.Adapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private List<HistoryItem> historyItems;
 
-    public PmHistoryFragment() {
+    public HistoryFragment() {
     }
 
-    public static PmHistoryFragment newInstance() {
-        return new PmHistoryFragment();
+    public static HistoryFragment newInstance(int fragmentId) {
+        HistoryFragment fragment = new HistoryFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_FRAGMENT_ID, fragmentId);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            this.fragmentId = getArguments().getInt(ARG_FRAGMENT_ID);
+        }
     }
 
     @Override
@@ -39,17 +57,30 @@ public class PmHistoryFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(refreshListener);
 
         Context context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.pmFragmentRecyclerView);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.FragmentRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        adapter = new PmHistoryAdapter(new ArrayList<PmHistoryItem>(), interactionListener);
+        this.historyItems = new ArrayList<>();
+
+        if (this.fragmentId == PM_FRAGMENT_ID)
+            adapter = new PmHistoryAdapter(this.historyItems, interactionListener);
+        else if (this.fragmentId == PT_FRAGMENT_ID)
+            adapter = new PtHistoryAdapter(this.historyItems, interactionListener);
+
         recyclerView.setAdapter(adapter);
 
         return view;
     }
 
-    public void updateListView(List<PmHistoryItem> pmHistoryItems) {
-        this.adapter.updateAllItems(pmHistoryItems);
+    public void updateListView(List<HistoryItem> historyItems) {
+        this.historyItems.clear();
+        this.historyItems.addAll(historyItems);
+        this.adapter.notifyDataSetChanged();
         this.swipeRefreshLayout.setRefreshing(false);
+    }
+
+    public void addItem(HistoryItem item) {
+        this.historyItems.add(item);
+        this.adapter.notifyItemInserted(historyItems.size() - 1);
     }
 
     @Override
@@ -72,6 +103,6 @@ public class PmHistoryFragment extends Fragment {
     }
 
     public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(PmHistoryItem pmHistoryItem);
+        void onListFragmentInteraction(HistoryItem historyItem);
     }
 }

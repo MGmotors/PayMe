@@ -7,6 +7,7 @@ public class API {
         public final static String LOGOUT = "2";
         public final static String CREATEPM = "3";
         public final static String GET_MY_PMS = "4";
+        public final static String GET_MY_PTS = "5";
     }
     public static class ErrorCodes{
         public final static String NO_ERROR = "0";
@@ -36,12 +37,15 @@ public class API {
         public final static String LOGOUT = "https://payme-schabimperle.c9users.io/proto1/logout.php";
         public final static String CREATEPM = "https://payme-schabimperle.c9users.io/proto1/createPM.php";
         public final static String GET_MY_PMS = "https://payme-schabimperle.c9users.io/proto1/getMyPMs.php";
+        public final static String GET_MY_PTS = "https://payme-schabimperle.c9users.io/proto1/getMyPTs.php";
         public final static String MYADMIN = "https://payme-schabimperle.c9users.io/phpmyadmin/";
     }
 
     public static class JSON {
-        public final static String PM_ARRAY = "myPMs";
-        public final static String NAME = "name";
+        public final static String PM_ARRAY = "items";
+        public final static String CREATOR = "creator";
+        public final static String TITLE = "title";
+        public final static String USERNAME = "username";
         public final static String DESCRIPTION = "description";
         public final static String DEBTORS_ARRAY = "debtors";
         public final static String PRICE = "price";

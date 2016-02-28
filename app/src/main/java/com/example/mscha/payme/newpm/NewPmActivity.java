@@ -4,14 +4,13 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
 import com.example.mscha.payme.R;
 
-public class NewPmActivity extends AppCompatActivity implements View.OnClickListener {
+public class NewPmActivity extends AppCompatActivity {
 
     private static final String TAG = "NewPmActivity";
     private NewPmPresenter presenter;
@@ -33,10 +32,6 @@ public class NewPmActivity extends AppCompatActivity implements View.OnClickList
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.sending_pm_dialog_message));
 
-        ImageButton sendBtn = (ImageButton)findViewById(R.id.send_btn);
-        sendBtn.setVisibility(View.VISIBLE);
-        sendBtn.setOnClickListener(this);
-
         titleET = (EditText) findViewById(R.id.titleEditText);
         descriptionET = (EditText) findViewById(R.id.descriptionEditText);
         priceET = (EditText) findViewById(R.id.priceEditText);
@@ -44,16 +39,19 @@ public class NewPmActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.new_pm_menu, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home)
             finish();
+        else if (id == R.id.action_send)
+            presenter.onSendClicked(titleET.getText().toString(), descriptionET.getText().toString(), priceET.getText().toString());
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View v) {
-        presenter.onSendClicked(titleET.getText().toString(), descriptionET.getText().toString(), priceET.getText().toString());
     }
 
     public void showProgressDialog(boolean show) {

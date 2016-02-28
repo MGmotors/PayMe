@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/pmFragmentRecyclerView"
+        android:id="@+id/FragmentRecyclerView"
         android:name="com.example.mscha.payme.main.pmhistory.PMHistoryFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,7 +15,6 @@
         android:layout_marginRight="16dp"
         android:background="@color/colorAppBackground"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".main.pmhistory.PmHistoryFragment"
-        tools:listitem="@layout/listview_item" />
+        tools:context=".main.history.HistoryFragment" />
 
 </android.support.v4.widget.SwipeRefreshLayout>

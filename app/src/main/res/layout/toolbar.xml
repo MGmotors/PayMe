@@ -7,15 +7,4 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:layout_scrollFlags="scroll|enterAlways">
 
-    <ImageButton
-        android:id="@+id/send_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:adjustViewBounds="true"
-        android:background="@null"
-        android:src="@android:drawable/ic_menu_send"
-        android:visibility="gone">
-    </ImageButton>
-
 </android.support.v7.widget.Toolbar>

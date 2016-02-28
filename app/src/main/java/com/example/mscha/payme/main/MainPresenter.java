@@ -7,18 +7,9 @@ import android.util.Log;
 import com.example.mscha.payme.app.API;
 import com.example.mscha.payme.app.APIInteractor;
 import com.example.mscha.payme.app.OnResponseListener;
+import com.example.mscha.payme.helper.JsonParser;
 import com.example.mscha.payme.login.LoginActivity;
-import com.example.mscha.payme.main.pmhistory.PmHistoryItem;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import com.example.mscha.payme.main.history.HistoryFragment;
 
 public class MainPresenter implements OnResponseListener{
 
@@ -39,6 +30,7 @@ public class MainPresenter implements OnResponseListener{
     public void tryLoginByStoredCredentials() {
         if (apiInteractor.loggedIn()) {
             getMyPMs();
+            getMyPTs();
             return;
         }
         SharedPreferences sharedPreferences = view.getSharedPreferences(LoginActivity.SHARED_PREFS_NAME, Context.MODE_PRIVATE);
@@ -55,7 +47,7 @@ public class MainPresenter implements OnResponseListener{
         }
     }
 
-    private void clearSavedCredentials() {
+    private void clearStoredCredentials() {
         SharedPreferences sharedPreferences = view.getSharedPreferences(LoginActivity.SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove("email");
@@ -66,6 +58,11 @@ public class MainPresenter implements OnResponseListener{
 
     public void getMyPMs(){
         this.apiInteractor.getMyPMs(this);
+    }
+
+
+    private void getMyPTs() {
+        this.apiInteractor.getMyPTs(this);
     }
 
     @Override
@@ -80,11 +77,15 @@ public class MainPresenter implements OnResponseListener{
 
         switch (actionCode) {
             case API.ActionCodes.GET_MY_PMS:
-                this.view.updatePmHistoryItems(parseJsonString(data));
+                this.view.updateHistoryItems(JsonParser.parseString(data), HistoryFragment.PM_FRAGMENT_ID);
+                break;
+            case API.ActionCodes.GET_MY_PTS:
+                this.view.updateHistoryItems(JsonParser.parseString(data), HistoryFragment.PT_FRAGMENT_ID);
                 break;
             case API.ActionCodes.LOGIN:
                 Log.d(TAG, "Login successful");
                 getMyPMs();
+                getMyPTs();
                 this.view.showLoginProgressDialog(false);
                 break;
             case API.ActionCodes.LOGOUT:
@@ -98,43 +99,11 @@ public class MainPresenter implements OnResponseListener{
         }
     }
 
-    public List<PmHistoryItem> parseJsonString(String data) {
-        ArrayList<PmHistoryItem> items = new ArrayList<>();
-        JSONObject jsonObject;
-        try {
-            jsonObject = new JSONObject(data);
-            JSONArray myPMsjsonArray = jsonObject.getJSONArray(API.JSON.PM_ARRAY);
-            for (int i = 0; i < myPMsjsonArray.length(); i++) {
-                JSONObject pm = myPMsjsonArray.getJSONObject(i);
-
-                String name = String.valueOf(pm.get(API.JSON.NAME));
-                String description = String.valueOf(pm.get(API.JSON.DESCRIPTION));
-                Date dateTime = Timestamp.valueOf(String.valueOf(pm.get(API.JSON.DATETIME)));
-                String price = String.valueOf(pm.get(API.JSON.PRICE));
-
-                //parse debtors
-                JSONArray debtorsJsonArray = pm.getJSONArray(API.JSON.DEBTORS_ARRAY);
-                HashMap<String, Boolean> debtors = new HashMap<>(debtorsJsonArray.length());
-                for (int j = 0; j < debtorsJsonArray.length(); j++) {
-                    JSONObject debtorJsonObject = debtorsJsonArray.getJSONObject(i);
-                    String debtorName = debtorJsonObject.getString(API.JSON.NAME);
-                    boolean hasPayed = debtorJsonObject.getInt(API.JSON.HAS_PAYED) == 1;
-//                    Log.d(TAG, "    Debtor Name: " + name + ", hasayed: " + hasPayed);
-                    debtors.put(debtorName, hasPayed);
-                }
-
-                PmHistoryItem item = new PmHistoryItem(name, description, debtors, dateTime, Double.parseDouble(price));
-                Log.d(TAG, "Item " + i + ": " + item.toString());
-                items.add(item);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return items;
-    }
-
-    public void onRefreshClicked() {
-        getMyPMs();
+    public void onRefresh(int fragmentId) {
+        if (fragmentId == HistoryFragment.PM_FRAGMENT_ID)
+            getMyPMs();
+        else if (fragmentId == HistoryFragment.PT_FRAGMENT_ID)
+            getMyPTs();
     }
 
     public void onNewPmSent() {
@@ -142,9 +111,9 @@ public class MainPresenter implements OnResponseListener{
         getMyPMs();
     }
 
-    public void onLogoutClicked() {
+    public void onLogout() {
         this.view.showLogoutProgressDialog(true);
-        this.clearSavedCredentials();
+        this.clearStoredCredentials();
         apiInteractor.logout(this);
     }
 }

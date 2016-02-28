@@ -21,13 +21,13 @@ import android.view.ViewGroup;
 
 import com.example.mscha.payme.R;
 import com.example.mscha.payme.login.LoginActivity;
-import com.example.mscha.payme.main.pmhistory.PmHistoryFragment;
-import com.example.mscha.payme.main.pmhistory.PmHistoryItem;
+import com.example.mscha.payme.main.history.HistoryFragment;
+import com.example.mscha.payme.main.history.HistoryItem;
 import com.example.mscha.payme.newpm.NewPmActivity;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, PmHistoryFragment.OnListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, HistoryFragment.OnListFragmentInteractionListener {
 
     private static final String TAG = "MainActivity";
     private static final int NEW_PM_REQUEST = 0;
@@ -75,12 +75,19 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         presenter.onPostCreate();
     }
 
-    public void updatePmHistoryItems(List<PmHistoryItem> items) {
-        PmHistoryFragment pmHistoryFragment = (PmHistoryFragment) sectionsPagerAdapter.getRegisteredFragment(0);
-        if (pmHistoryFragment != null) {
-            pmHistoryFragment.updateListView(items);
+    public void updateHistoryItems(List<HistoryItem> items, int fragmentId) {
+        HistoryFragment historyFragment = null;
+        if(fragmentId == HistoryFragment.PM_FRAGMENT_ID) {
+            historyFragment = (HistoryFragment) sectionsPagerAdapter.getRegisteredFragment(HistoryFragment.PM_FRAGMENT_ID);
+        }
+        else if(fragmentId == HistoryFragment.PT_FRAGMENT_ID) {
+            historyFragment = (HistoryFragment) sectionsPagerAdapter.getRegisteredFragment(HistoryFragment.PT_FRAGMENT_ID);
+        }
+
+        if (historyFragment != null) {
+            historyFragment.updateListView(items);
         } else {
-            Log.e(TAG, "pmHistoryFragment is null");
+            Log.e(TAG, "historyFragment is null");
         }
     }
 
@@ -118,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         int id = item.getItemId();
 
         if (id == R.id.action_logout) {
-            this.presenter.onLogoutClicked();
+            this.presenter.onLogout();
         } else if (id == R.id.action_settings) {
             return true;
         }
@@ -127,14 +134,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     @Override
-    public void onListFragmentInteraction(PmHistoryItem pmHistoryItem) {
+    public void onListFragmentInteraction(HistoryItem historyItem) {
         //TODO hier detail view starten
-        Log.d(TAG, pmHistoryItem.toString());
+        Log.d(TAG, historyItem.toString());
     }
 
     @Override
     public void onRefresh() {
-        presenter.onRefreshClicked();
+        presenter.onRefresh(viewPager.getCurrentItem());
     }
 
     public void showLoginProgressDialog(boolean show) {
@@ -167,10 +174,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         @Override
         public Fragment getItem(int position) {
-            if (position == 0)
-                return PmHistoryFragment.newInstance();
-            if (position == 1)
-                return PmHistoryFragment.newInstance();
+            if (position == HistoryFragment.PM_FRAGMENT_ID)
+                return HistoryFragment.newInstance(HistoryFragment.PM_FRAGMENT_ID);
+            if (position == HistoryFragment.PT_FRAGMENT_ID)
+                return HistoryFragment.newInstance(HistoryFragment.PT_FRAGMENT_ID);
             return null;
         }
 

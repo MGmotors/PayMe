@@ -1,4 +1,4 @@
-package com.example.mscha.payme.main.pmhistory;
+package com.example.mscha.payme.main.history;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,37 +7,25 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.mscha.payme.R;
-import com.example.mscha.payme.main.pmhistory.PmHistoryFragment.OnListFragmentInteractionListener;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class PmHistoryAdapter extends RecyclerView.Adapter<PmHistoryAdapter.ViewHolder> {
+public class PtHistoryAdapter extends RecyclerView.Adapter<PtHistoryAdapter.ViewHolder> {
 
-    private static final String TAG = "PmHistoryAdapter";
-    private final OnListFragmentInteractionListener listener;
-    private List<PmHistoryItem> pmHistoryItems;
+    private static final String TAG = "PtHistoryAdapter";
+    private final HistoryFragment.OnListFragmentInteractionListener listener;
+    private List<HistoryItem> historyItems;
     private NumberFormat numberFormat;
     private DateFormat dateFormat;
 
-    public PmHistoryAdapter(List<PmHistoryItem> pmHistoryItems, OnListFragmentInteractionListener listener) {
-        this.pmHistoryItems = pmHistoryItems;
+    public PtHistoryAdapter(List<HistoryItem> historyItems, HistoryFragment.OnListFragmentInteractionListener listener) {
+        this.historyItems = historyItems;
         this.listener = listener;
         numberFormat = NumberFormat.getCurrencyInstance();
         dateFormat = SimpleDateFormat.getDateTimeInstance();
-    }
-
-    public void updateAllItems(List<PmHistoryItem> pmHistoryItems) {
-        this.pmHistoryItems.clear();
-        this.pmHistoryItems.addAll(pmHistoryItems);
-        this.notifyDataSetChanged();
-    }
-
-    public void addItem(PmHistoryItem item) {
-        this.pmHistoryItems.add(item);
-        this.notifyItemInserted(pmHistoryItems.size() - 1);
     }
 
     @Override
@@ -49,17 +37,17 @@ public class PmHistoryAdapter extends RecyclerView.Adapter<PmHistoryAdapter.View
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.pmHistoryItem = pmHistoryItems.get(pmHistoryItems.size() - position - 1);
-        holder.titleTV.setText(holder.pmHistoryItem.title);
-        holder.descriptionTV.setText(holder.pmHistoryItem.description);
-        holder.priceTV.setText(numberFormat.format(holder.pmHistoryItem.price));
-        holder.dateTime.setText(dateFormat.format(holder.pmHistoryItem.dateTime));
+        holder.historyItem = historyItems.get(historyItems.size() - position - 1);
+        holder.titleTV.setText(holder.historyItem.creator + " - " + holder.historyItem.title);
+        holder.descriptionTV.setText(holder.historyItem.description);
+        holder.priceTV.setText(numberFormat.format(holder.historyItem.price));
+        holder.dateTime.setText(dateFormat.format(holder.historyItem.dateTime));
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onListFragmentInteraction(holder.pmHistoryItem);
+                    listener.onListFragmentInteraction(holder.historyItem);
                 }
             }
         });
@@ -67,7 +55,7 @@ public class PmHistoryAdapter extends RecyclerView.Adapter<PmHistoryAdapter.View
 
     @Override
     public int getItemCount() {
-        return pmHistoryItems.size();
+        return historyItems.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -76,7 +64,7 @@ public class PmHistoryAdapter extends RecyclerView.Adapter<PmHistoryAdapter.View
         public final TextView descriptionTV;
         public final TextView dateTime;
         public final TextView priceTV;
-        public PmHistoryItem pmHistoryItem;
+        public HistoryItem historyItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -89,7 +77,7 @@ public class PmHistoryAdapter extends RecyclerView.Adapter<PmHistoryAdapter.View
 
         @Override
         public String toString() {
-            return super.toString() + " '" + this.pmHistoryItem.toString() + "'";
+            return super.toString() + " '" + this.historyItem.toString() + "'";
         }
     }
 }

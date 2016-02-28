@@ -64,10 +64,10 @@ public class APIInteractor {
         try {
             for(String debtor : debtors)
                 jsonArray.put(debtor);
-            json.put("name", title)
-                    .put("description", description)
-                    .put("debtors", jsonArray)
-                    .put("price", price);
+            json.put(API.JSON.USERNAME, title)
+                    .put(API.JSON.DESCRIPTION, description)
+                    .put(API.JSON.DEBTORS_ARRAY, jsonArray)
+                    .put(API.JSON.PRICE, price);
 
         } catch (JSONException e) {
             Log.d(TAG, "JSONException");
@@ -80,10 +80,16 @@ public class APIInteractor {
         sendAsyncRequest(API.URLs.CREATEPM, request, onResponseListener);
     }
 
-    public void getMyPMs(OnResponseListener responseListener){
+    public void getMyPMs(OnResponseListener listener) {
         HttpPost request = new HttpPost();
         request.put(API.HeaderFields.ACTION,API.ActionCodes.GET_MY_PMS);
-        sendAsyncRequest(API.URLs.GET_MY_PMS, request, responseListener);
+        sendAsyncRequest(API.URLs.GET_MY_PMS, request, listener);
+    }
+
+    public void getMyPTs(OnResponseListener listener) {
+        HttpPost request = new HttpPost();
+        request.put(API.HeaderFields.ACTION, API.ActionCodes.GET_MY_PTS);
+        sendAsyncRequest(API.URLs.GET_MY_PTS, request, listener);
     }
 
     private void sendAsyncRequest(String url, HttpPost request, OnResponseListener onResponseListener) {
@@ -133,7 +139,7 @@ public class APIInteractor {
                     answerBuilder.append(line).append("\n");
                 String answer = answerBuilder.toString();
 
-                //Log.d(TAG, "Answer: " + answer);
+                Log.d(TAG, "Answer: " + answer);
                 Log.d(TAG, "Statuscode: " + con.getHeaderField(API.HeaderFields.ERROR));
                 Log.d(TAG, "ActionCode: " + con.getHeaderField(API.HeaderFields.ACTION));
 
