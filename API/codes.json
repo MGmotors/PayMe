@@ -4,9 +4,10 @@
         "REGISTER": "0",
         "LOGIN": "1",
         "LOGOUT": "2",
-        "CREATEPM":"3",
+        "CREATE_PM":"3",
         "GET_MY_PMS":"4",
-        "GET_MY_PTS":"5"
+        "GET_MY_PTS":"5",
+        "GET_USERS":"6"
     },
     "ErrorCodes":
     {
@@ -30,15 +31,18 @@
         "EMAIL":"payme-email",
         "ACTION":"payme-action",
         "ERROR":"payme-error",
-        "CREATEPM_JSON":"payme-createpm-json"
+        "CREATEPM_JSON":"payme-createpm-json",
+        "SEARCH_USER":"search-user"
     },
     "URLs":{
-        "REGISTER":"https://payme-schabimperle.c9users.io/proto1/register.php",
-        "LOGIN":"https://payme-schabimperle.c9users.io/proto1/login.php",
-        "LOGOUT":"https://payme-schabimperle.c9users.io/proto1/logout.php",
-        "CREATEPM":"https://payme-schabimperle.c9users.io/proto1/createPM.php",
-        "GET_MY_PMS":"https://payme-schabimperle.c9users.io/proto1/getMyPMs.php",
-        "GET_MY_PTS":"https://payme-schabimperle.c9users.io/proto1/getMyPTs.php",
+        "ROOT":"https://payme-schabimperle.c9users.io/proto1/",
+        "REGISTER":"register.php",
+        "LOGIN":"login.php",
+        "LOGOUT":"logout.php",
+        "CREATEPM":"createPM.php",
+        "GET_MY_PMS":"getMyPMs.php",
+        "GET_MY_PTS":"getMyPTs.php",
+        "GET_USERS":"getUsers.php",
         "MYADMIN":"https://payme-schabimperle.c9users.io/phpmyadmin/"
     },
     "JSON":{
@@ -47,6 +51,7 @@
         "TITLE":"title",
         "DESCRIPTION":"description",
         "DEBTORS_ARRAY":"debtors",
+        "DEBTOR":"username",
         "PRICE":"price",
         "DATETIME":"datetime",
         "HAS_PAYED":"haspayed"

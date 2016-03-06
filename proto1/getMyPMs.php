@@ -12,14 +12,18 @@ ensureLogin();
 checkAction("GET_MY_PMS");
 
 
-$id= $_SESSION["uid"];
-$myPMs = getMyPMs($id);
+$id = $_SESSION["uid"];
+$query = "SELECT * FROM payme WHERE user_id = ?";
+$params = array($id);
+$myPMs = sendQuery($query, $params);
+
+
 $print = "{\"items\":[ ";
 for($i = 0; $i<sizeof($myPMs);$i++){
     $row = $myPMs[$i];
     $s = 
-    "{  \"creator\": ".getName($row["user_id"]).",
-        \"title\": \"".$row["name"]."\", 
+    "{  \"creator\": ".getUsername($row["user_id"]).",
+        \"title\": \"".$row["title"]."\", 
         \"description\" : \"".$row["description"]."\",    
         \"debtors\" : ".getDebtorNamesAndStateInJSON($row["id"]).",
         \"price\" : ".$row["price"].",

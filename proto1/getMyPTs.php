@@ -13,13 +13,17 @@ checkAction("GET_MY_PTS");
 
 
 $id = $_SESSION["uid"];
-$myPTs = getMyPTs($id);
+$query = "SELECT * FROM debtor, payme WHERE debtor.user_id = ? AND debtor.payme_id = payme.id";
+$params = array($id);
+$myPTs = sendQuery($query, $params);
+
+
 $print = "{\"items\":[ ";
 for($i = 0; $i<sizeof($myPTs);$i++){
     $row = $myPTs[$i];
     $s = 
-    "{  \"creator\": ".getName($row["user_id"]).",
-        \"title\": \"".$row["name"]."\",
+    "{  \"creator\": ".getUsername($row["user_id"]).",
+        \"title\": \"".$row["title"]."\",
         \"description\" : \"".$row["description"]."\",
         \"debtors\" : ".getDebtorNamesAndStateInJSON($row["id"]).",
         \"price\" : ".$row["price"].",

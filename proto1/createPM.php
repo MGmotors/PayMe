@@ -3,7 +3,7 @@
     session_start();
     ensureLogin();
     
-    checkAction("CREATEPM");
+    checkAction("CREATE_PM");
     
     $json = json_decode(getFieldOrDie("CREATEPM_JSON"),true);
     if(!$json){
@@ -12,21 +12,21 @@
     
     
     //parse
-    $name = $json["username"];
+    $title = $json["title"];
     $description = $json["description"];
     $price = str_replace( ',', '.', $json["price"]);
     $debtors = array_unique($json["debtors"]);
-    if(!$name || !$price || !$description || !$debtors || sizeof($debtors) < 1){
-        error("BAD_DATA", "name,price,description or debtors empty");
+    if(!$title || !$price || !$description || !$debtors || sizeof($debtors) < 1){
+        error("BAD_DATA", "title,price,description or debtors empty");
     }
 
 //INSERT new payme
 try{    
     $con = new PDO( DB_DSN, DB_USER, DB_PASSWORD );
     $con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
-    $sql = "INSERT INTO payme (name,description,user_id,datetime,price) VALUES (:name,:description,:user_id,NOW(),:price)";
+    $sql = "INSERT INTO payme (title,description,user_id,datetime,price) VALUES (:title,:description,:user_id,NOW(),:price)";
     $stmt = $con->prepare($sql);
-    $stmt->bindValue( "name", $name);
+    $stmt->bindValue( "title", $title);
     $stmt->bindValue( "description", $description);
     $stmt->bindValue( "user_id", $_SESSION["uid"]);
     $stmt->bindValue( "price", $price);
