@@ -24,7 +24,7 @@ public class NewPmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_pm);
         presenter = new NewPmPresenter(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.pm_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -58,7 +58,7 @@ public class NewPmActivity extends AppCompatActivity {
         if (show)
             this.progressDialog.show();
         else
-            this.progressDialog.hide();
+            this.progressDialog.dismiss();
     }
 
     public void showTitleEmptyError() {

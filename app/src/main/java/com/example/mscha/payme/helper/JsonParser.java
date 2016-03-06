@@ -37,18 +37,18 @@ public class JsonParser {
                 //parse debtors
                 JSONArray debtorsJsonArray = itemJO.getJSONArray(API.JSON.DEBTORS_ARRAY);
                 HashMap<String, Boolean> debtors = new HashMap<>(debtorsJsonArray.length());
-                Log.d(TAG, String.valueOf(debtorsJsonArray.length()));
+                //Log.d(TAG, String.valueOf(debtorsJsonArray.length()));
                 final int numberOfItemsInResp = debtorsJsonArray.length();
                 for (int j = 0; j < numberOfItemsInResp; j++) {
                     JSONObject debtorJsonObject = debtorsJsonArray.getJSONObject(j);
-                    String debtorName = debtorJsonObject.getString(API.JSON.USERNAME);
+                    String debtorName = debtorJsonObject.getString(API.JSON.DEBTOR);
                     boolean hasPayed = debtorJsonObject.getInt(API.JSON.HAS_PAYED) == 1;
 //                    Log.d(TAG, "Debtor Name: " + debtorName + ", has Payed: " + hasPayed);
                     debtors.put(debtorName, hasPayed);
                 }
 
                 HistoryItem item = new HistoryItem(creator, title, description, debtors, dateTime, Double.parseDouble(price));
-                Log.d(TAG, "Item " + i + ": " + item.toString());
+                //Log.d(TAG, "Item " + i + ": " + item.toString());
                 items.add(item);
             }
         } catch (JSONException e) {

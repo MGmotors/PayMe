@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         presenter = new RegisterPresenter(this);
-        this.setSupportActionBar((Toolbar) findViewById(R.id.register_toolbar));
+        this.setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
         registerBtn = (Button) findViewById(R.id.btnRegister);
 
@@ -91,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void hideProgress() {
-        progressDialog.hide();
+        progressDialog.dismiss();
     }
 
     public void navigateToLogin(String message) {

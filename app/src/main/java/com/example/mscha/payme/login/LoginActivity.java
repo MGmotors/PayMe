@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         presenter = new LoginPresenter(this);
-        setSupportActionBar((Toolbar) findViewById(R.id.login_toolbar));
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.logging_in));
@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void hideProgress() {
-        progressDialog.hide();
+        progressDialog.dismiss();
     }
 
     public void navigateToMain() {

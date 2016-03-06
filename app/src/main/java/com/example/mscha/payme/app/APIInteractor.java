@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
 
+import com.example.mscha.payme.contact.ContactPresenter;
 import com.example.mscha.payme.helper.HttpPost;
 
 import org.json.JSONArray;
@@ -54,17 +55,13 @@ public class APIInteractor {
         sendAsyncRequest(API.URLs.LOGOUT, request, listener);
     }
 
-    public void clearCookie() {
-        sessionCookie = null;
-    }
-
     public void createPm(String title, String description, String[] debtors, double price, OnResponseListener onResponseListener) {
         JSONObject json = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         try {
             for(String debtor : debtors)
                 jsonArray.put(debtor);
-            json.put(API.JSON.USERNAME, title)
+            json.put(API.JSON.TITLE, title)
                     .put(API.JSON.DESCRIPTION, description)
                     .put(API.JSON.DEBTORS_ARRAY, jsonArray)
                     .put(API.JSON.PRICE, price);
@@ -74,7 +71,7 @@ public class APIInteractor {
             e.printStackTrace();
         }
         HttpPost request = new HttpPost();
-        request.put(API.HeaderFields.ACTION, API.ActionCodes.CREATEPM);
+        request.put(API.HeaderFields.ACTION, API.ActionCodes.CREATE_PM);
         Log.d(TAG, "Json PM-request: " + json.toString());
         request.put(API.HeaderFields.CREATEPM_JSON, json.toString());
         sendAsyncRequest(API.URLs.CREATEPM, request, onResponseListener);
@@ -92,8 +89,15 @@ public class APIInteractor {
         sendAsyncRequest(API.URLs.GET_MY_PTS, request, listener);
     }
 
-    private void sendAsyncRequest(String url, HttpPost request, OnResponseListener onResponseListener) {
-        new SendAsyncRequest(url, request, onResponseListener).execute();
+    public void getUsers(String text, OnResponseListener listener) {
+        HttpPost request = new HttpPost();
+        request.put(API.HeaderFields.ACTION, API.ActionCodes.GET_USERS);
+        request.put(API.HeaderFields.SEARCH_USER, text);
+        sendAsyncRequest(API.URLs.GET_USERS, request, listener);
+    }
+
+    private void sendAsyncRequest(String phpFileName, HttpPost request, OnResponseListener onResponseListener) {
+        new SendAsyncRequest(API.URLs.ROOT + phpFileName, request, onResponseListener).execute();
     }
 
     public byte[] hash(String password) {
@@ -108,6 +112,10 @@ public class APIInteractor {
 
     public String byteToString(byte[] bytes) {
         return Base64.encodeToString(bytes, Base64.NO_WRAP);
+    }
+
+    public void clearCookie() {
+        sessionCookie = null;
     }
 
     private class SendAsyncRequest extends AsyncTask<Void, Void, String[]> {
@@ -140,8 +148,8 @@ public class APIInteractor {
                 String answer = answerBuilder.toString();
 
                 Log.d(TAG, "Answer: " + answer);
-                Log.d(TAG, "Statuscode: " + con.getHeaderField(API.HeaderFields.ERROR));
                 Log.d(TAG, "ActionCode: " + con.getHeaderField(API.HeaderFields.ACTION));
+                Log.d(TAG, "Statuscode: " + con.getHeaderField(API.HeaderFields.ERROR));
 
                 //TODO session cookie wird zwei mal gesetzt, warum?
                 this.getSessionCookie(con.getHeaderFields().get("Set-Cookie"));

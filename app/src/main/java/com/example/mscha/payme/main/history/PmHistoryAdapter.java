@@ -32,7 +32,7 @@ public class PmHistoryAdapter extends RecyclerView.Adapter<PmHistoryAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.listview_item, parent, false);
+                .inflate(R.layout.history_listview_item, parent, false);
         return new ViewHolder(view);
     }
 

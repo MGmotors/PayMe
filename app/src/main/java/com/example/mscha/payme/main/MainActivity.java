@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mscha.payme.R;
+import com.example.mscha.payme.contact.ContactActivity;
 import com.example.mscha.payme.login.LoginActivity;
 import com.example.mscha.payme.main.history.HistoryFragment;
 import com.example.mscha.payme.main.history.HistoryItem;
@@ -42,9 +43,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setContentView(R.layout.activity_main);
         this.presenter = new MainPresenter(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //TODO toolbar zu hoch korrigieren
 
         progressDialog = new ProgressDialog(this);
 
@@ -108,6 +108,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         startActivityForResult(new Intent(this, NewPmActivity.class), NEW_PM_REQUEST);
     }
 
+    private void navigateToContact() {
+        startActivity(new Intent(this, ContactActivity.class));
+    }
+
     public void navigateToLogin() {
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
@@ -120,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -128,11 +133,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             this.presenter.onLogout();
         } else if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_add_contact) {
+            this.navigateToContact();
         }
 
         return super.onOptionsItemSelected(item);
     }
-
     @Override
     public void onListFragmentInteraction(HistoryItem historyItem) {
         //TODO hier detail view starten
@@ -149,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             progressDialog.setMessage(getString(R.string.logging_in));
             this.progressDialog.show();
         } else
-            this.progressDialog.hide();
+            this.progressDialog.dismiss();
     }
 
     public void showLogoutProgressDialog(boolean show) {
@@ -157,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             progressDialog.setMessage(getString(R.string.logout_progress_dialog_message));
             this.progressDialog.show();
         } else
-            this.progressDialog.hide();
+            this.progressDialog.dismiss();
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -196,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         public Object instantiateItem(ViewGroup container, int position) {
             Fragment fragment = (Fragment) super.instantiateItem(container, position);
             registeredFragments.put(position, fragment);
-            Log.d(TAG, "Fragment has been added at position: " + position);
+            //Log.d(TAG, "Fragment has been added at position: " + position);
             return fragment;
         }
 
