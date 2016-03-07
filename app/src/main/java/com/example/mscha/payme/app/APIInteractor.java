@@ -96,10 +96,6 @@ public class APIInteractor {
         sendAsyncRequest(API.URLs.GET_USERS, request, listener);
     }
 
-    private void sendAsyncRequest(String phpFileName, HttpPost request, OnResponseListener onResponseListener) {
-        new SendAsyncRequest(API.URLs.ROOT + phpFileName, request, onResponseListener).execute();
-    }
-
     public byte[] hash(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -112,6 +108,10 @@ public class APIInteractor {
 
     public String byteToString(byte[] bytes) {
         return Base64.encodeToString(bytes, Base64.NO_WRAP);
+    }
+
+    private void sendAsyncRequest(String phpFileName, HttpPost request, OnResponseListener onResponseListener) {
+        new SendAsyncRequest(API.URLs.ROOT + phpFileName, request, onResponseListener).execute();
     }
 
     public void clearCookie() {
@@ -133,6 +133,7 @@ public class APIInteractor {
         protected String[] doInBackground(Void... params) {
             try {
                 HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
+                con.setConnectTimeout(5000);
                 con.setDoOutput(true);
                 con.setDoInput(true);
                 if(sessionCookie != null)

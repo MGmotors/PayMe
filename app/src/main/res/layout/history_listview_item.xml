@@ -19,7 +19,6 @@
         android:layout_toLeftOf="@+id/pmHistoryDateTime"
         android:layout_toStartOf="@+id/pmHistoryDateTime"
         android:singleLine="true"
-        android:text="Titel"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/colorPrimaryText" />
 
@@ -33,7 +32,6 @@
         android:layout_toLeftOf="@+id/pmHistoryPrice"
         android:layout_toStartOf="@+id/pmHistoryPrice"
         android:maxLines="3"
-        android:text="Einkauf Donnerstag: Shampoo, usw lkj  alksjdf alksjdf alksdjf alksj dfoiwwe todfjgölkajsd f asdölkfj asldkjf wlkjwer lacpogiuerljklrntaösdoudf aqioweur asldjk foase rölijq"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/listview_item_textsize_description" />
@@ -47,7 +45,6 @@
         android:layout_alignParentTop="true"
         android:gravity="top|end"
         android:singleLine="true"
-        android:text="13:23 - 20.11.29"
         android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/listview_item_textsize_date" />
 
@@ -61,7 +58,6 @@
         android:gravity="bottom|end"
         android:paddingLeft="@dimen/list_item_padding"
         android:singleLine="true"
-        android:text="50 €"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/colorPrimaryText"
         android:textStyle="bold" />
