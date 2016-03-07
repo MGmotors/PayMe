@@ -3,6 +3,7 @@ package com.example.mscha.payme.main;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -66,12 +67,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 startNewPm();
             }
         });
-
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+    public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
         presenter.onPostCreate();
     }
 

@@ -10,10 +10,13 @@ import com.example.mscha.payme.app.OnResponseListener;
 import com.example.mscha.payme.helper.JsonParser;
 import com.example.mscha.payme.login.LoginActivity;
 import com.example.mscha.payme.main.history.HistoryFragment;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 public class MainPresenter implements OnResponseListener{
 
     private static final String TAG = "MainPresenter";
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private MainActivity view;
     private APIInteractor apiInteractor;
 
@@ -22,17 +25,19 @@ public class MainPresenter implements OnResponseListener{
         this.apiInteractor = new APIInteractor();
     }
 
-
     public void onPostCreate() {
-        tryLoginByStoredCredentials();
+        if(!apiInteractor.isLoggedIn()) {
+            boolean loginSuccessful = tryLoginByStoredCredentials();
+            if(loginSuccessful){
+                Log.d(TAG, "No stored credentials");
+                this.view.navigateToLogin();
+            }
+        } else {
+            onLoginSuccessful();
+        }
     }
 
-    public void tryLoginByStoredCredentials() {
-        if (apiInteractor.loggedIn()) {
-            getMyPMs();
-            getMyPTs();
-            return;
-        }
+    public boolean tryLoginByStoredCredentials() {
         SharedPreferences sharedPreferences = view.getSharedPreferences(LoginActivity.SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         String email = sharedPreferences.getString("email", null);
         String hashedPassword = sharedPreferences.getString("hashedPassword", null);
@@ -41,9 +46,9 @@ public class MainPresenter implements OnResponseListener{
             Log.d(TAG, "load email: " + email);
             Log.d(TAG, "load hashedPassword: " + hashedPassword);
             this.apiInteractor.login(email, hashedPassword, this);
+            return true;
         } else {
-            Log.d(TAG, "No stored credentials");
-            this.view.navigateToLogin();
+            return false;
         }
     }
 
@@ -54,15 +59,6 @@ public class MainPresenter implements OnResponseListener{
         editor.remove("hashedPassword");
         Log.d(TAG, "Credentials cleared");
         editor.apply();
-    }
-
-    public void getMyPMs(){
-        this.apiInteractor.getMyPMs(this);
-    }
-
-
-    private void getMyPTs() {
-        this.apiInteractor.getMyPTs(this);
     }
 
     @Override
@@ -84,8 +80,7 @@ public class MainPresenter implements OnResponseListener{
                 break;
             case API.ActionCodes.LOGIN:
                 Log.d(TAG, "Login successful");
-                getMyPMs();
-                getMyPTs();
+                onLoginSuccessful();
                 this.view.showLoginProgressDialog(false);
                 break;
             case API.ActionCodes.LOGOUT:
@@ -101,19 +96,48 @@ public class MainPresenter implements OnResponseListener{
 
     public void onRefresh(int fragmentId) {
         if (fragmentId == HistoryFragment.PM_FRAGMENT_ID)
-            getMyPMs();
+            this.apiInteractor.getMyPMs(this);
         else if (fragmentId == HistoryFragment.PT_FRAGMENT_ID)
-            getMyPTs();
+            this.apiInteractor.getMyPTs(this);
+    }
+
+    public void onLoginSuccessful() {
+        checkPlayServices();
+        this.apiInteractor.getMyPMs(this);
+        this.apiInteractor.getMyPTs(this);
     }
 
     public void onNewPmSent() {
         //TODO hier vielleicht pm eizeln einfügen und nicht alle updaten?
-        getMyPMs();
+        this.apiInteractor.getMyPMs(this);
     }
 
     public void onLogout() {
         this.view.showLogoutProgressDialog(true);
         this.clearStoredCredentials();
         apiInteractor.logout(this);
+    }
+
+    /**
+     * Check the device to make sure it has the Google Play Services APK. If
+     * it doesn't, display a dialog that allows users to download the APK from
+     * the Google Play Store or enable it in the device's system settings.
+     */
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(view);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            Log.d(TAG, "checkPlayServices failed");
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(view, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i(TAG, "This device is not supported.");
+                view.finish();
+            }
+            return false;
+        }
+        Log.d(TAG, "checkPlayServices successful");
+        return true;
     }
 }

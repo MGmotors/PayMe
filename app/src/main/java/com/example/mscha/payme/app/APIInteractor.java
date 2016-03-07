@@ -27,7 +27,7 @@ public class APIInteractor {
     //TODO alternative für statische variable suchen
     private static String sessionCookie;
 
-    public boolean loggedIn() {
+    public boolean isLoggedIn() {
         return sessionCookie != null;
     }
 
@@ -148,7 +148,7 @@ public class APIInteractor {
                     answerBuilder.append(line).append("\n");
                 String answer = answerBuilder.toString();
 
-                Log.d(TAG, "Answer: " + answer);
+//                Log.d(TAG, "Answer: " + answer);
                 Log.d(TAG, "ActionCode: " + con.getHeaderField(API.HeaderFields.ACTION));
                 Log.d(TAG, "Statuscode: " + con.getHeaderField(API.HeaderFields.ERROR));
 

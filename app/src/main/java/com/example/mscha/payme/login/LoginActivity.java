@@ -74,6 +74,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if(getIntent().hasExtra("Message"))
             Snackbar.make(findViewById(R.id.login_container), getIntent().getStringExtra("Message"), Snackbar.LENGTH_INDEFINITE).show();
+
+        presenter.onCreate();
     }
 
     public void showDatabaseError() {

@@ -7,6 +7,8 @@ import android.util.Log;
 import com.example.mscha.payme.app.API;
 import com.example.mscha.payme.app.APIInteractor;
 import com.example.mscha.payme.app.OnResponseListener;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 public class LoginPresenter implements OnResponseListener {
 
@@ -16,6 +18,9 @@ public class LoginPresenter implements OnResponseListener {
 
     public LoginPresenter(LoginActivity view) {
         this.view = view;
+    }
+
+    public void onCreate() {
         this.apiInteractor = new APIInteractor();
     }
 
@@ -71,5 +76,4 @@ public class LoginPresenter implements OnResponseListener {
                 Log.e(TAG, "Unhandled error code in header field " + API.HeaderFields.ERROR + ": " + statusCode);
         }
     }
-
 }
