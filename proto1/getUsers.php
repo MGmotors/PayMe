@@ -10,7 +10,7 @@ checkAction("GET_USERS");
 
 $query = "SELECT username FROM users WHERE username LIKE ?";
 $params = array(getFieldOrDie("SEARCH_USER")."%");
-$users = sendQuery($query, $params);
+$users = selectQuery($query, $params);
 
 for($i = 0; $i < sizeof($users); $i++) {
     $result .= $users[$i][0]."\n";

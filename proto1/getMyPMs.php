@@ -15,7 +15,7 @@ checkAction("GET_MY_PMS");
 $id = $_SESSION["uid"];
 $query = "SELECT * FROM payme WHERE user_id = ?";
 $params = array($id);
-$myPMs = sendQuery($query, $params);
+$myPMs = selectQuery($query, $params);
 
 
 $print = "{\"items\":[ ";

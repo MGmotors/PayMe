@@ -67,15 +67,12 @@ function getFieldOrDie($field){
     }
 }
 
-function sendQuery($query, $params) {
+function selectQuery($query, $params) {
      try{
         $con = new PDO(DB_DSN, DB_USER, DB_PASSWORD);
         $con -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
         $stmt = $con -> prepare($query);
-        for( $i = 0; $i < sizeof($params); $i++ ) {
-            $stmt -> bindValue($i + 1, $params[$i]);
-        }
-        $succ = $stmt -> execute();
+        $succ = $stmt -> execute($params);
         if(!$succ){
             $arr = $stmt -> errorInfo();
             dbError($arr[2]);
@@ -89,14 +86,14 @@ function sendQuery($query, $params) {
 function getUsername($uid) {
         $query = "SELECT username FROM users WHERE id = ?";
         $params = array($uid);
-        $result = sendQuery($query, $params);
+        $result = selectQuery($query, $params);
         return $result[0]["username"];
 }
 
 function getDebtorNamesAndStateInJSON($paymeID){
      $query = "SELECT * FROM debtor, users WHERE debtor.payme_id = ? AND debtor.user_id = users.id";
      $params = array($paymeID);
-     $result = sendQuery($query, $params);
+     $result = selectQuery($query, $params);
     
     $str = "[";
     
@@ -112,4 +109,49 @@ function getDebtorNamesAndStateInJSON($paymeID){
     
     return $str;
 }
+
+function getGcmToken($id) {
+    $query = "SELECT gcm_token FROM users WHERE id = ?";
+    $params = array($id);
+    $result = selectQuery($query, $params);
+    $token = $result[0][0];
+    if(!$token) {
+        error("BAD_DATA");
+    }
+    return $token;
+}
+
+function sendGcmMessage($ids, $params) {
+
+    //prepare message to send to google server
+    $data = "{ \"to\" : \"" . $token . "\" }";
+    $url = "https://gcm-http.googleapis.com/gcm/send";
+    $header1 = "Authorization: key=AIzaSyCdmU7GKm0XPTJ9IBjXa4x_uuFEudW819k";
+    $header2 = "Content-Type: application/json";
+    $header3 = "Content-Length: " . strlen($data);
+    
+    $opts = array(
+        'http' => array (
+            'method' => "POST",
+            'ignore_errors' => true,
+            'header' => $header1 . "\r\n" .
+                        $header2 . "\r\n" .
+                        $header3 . "\r\n",
+            'content' => $data
+        )
+    );
+    
+    //send message to google server
+    $context = stream_context_create($opts);
+    $fp = fopen($url, 'r', false, $context);
+    
+    //write answer from google server
+    // if($fp != false) {
+    //     fpassthru($fp);
+    //     fclose($fp);
+    // }
+    
+    return $fp;
+}
+
 ?>

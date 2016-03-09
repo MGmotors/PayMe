@@ -15,7 +15,7 @@ checkAction("GET_MY_PTS");
 $id = $_SESSION["uid"];
 $query = "SELECT * FROM debtor, payme WHERE debtor.user_id = ? AND debtor.payme_id = payme.id";
 $params = array($id);
-$myPTs = sendQuery($query, $params);
+$myPTs = selectQuery($query, $params);
 
 
 $print = "{\"items\":[ ";

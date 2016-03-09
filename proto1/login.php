@@ -1,5 +1,6 @@
 <?php
 require_once("helper/functions.php");
+
 setErrorHeader("UNKNOWN_ERROR");
 
 $email = "";
